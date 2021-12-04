@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "clapp-application",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

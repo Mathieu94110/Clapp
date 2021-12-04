@@ -1,0 +1,7 @@
+{
+  "name": "clapp-application",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
