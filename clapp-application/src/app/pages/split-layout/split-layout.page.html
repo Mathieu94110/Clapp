@@ -1,15 +1,17 @@
 <ion-split-pane contentId="main" when="(min-width: 766px)">
-  <ion-menu contentId="main">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>
-          <ion-mg class="background-header"></ion-mg>
-        </ion-title>
-      </ion-toolbar>
+  <ion-menu contentId="main" class="desktop-menu">
+    <ion-header class="ion-no-border" style="height: '95.88px'">
+      <ion-title class="menu-desktop-title"
+        ><img src="../../../assets/icon/lifeaz-logo.png"
+      /></ion-title>
     </ion-header>
     <ion-content>
+      <ion-item class="desktop-menu-equipment-container">
+        <ion-label color="dark"> MATÉRIEL </ion-label>
+      </ion-item>
       <ion-menu-toggle autoHide="false">
         <ion-item
+          lines="none"
           routerLink="/app/defibrillators"
           routerDirection="root"
           routerLinkActive="active-link"
@@ -19,6 +21,7 @@
       </ion-menu-toggle>
       <ion-menu-toggle autoHide="false">
         <ion-item
+          lines="none"
           routerLink="/app/orders"
           routerDirection="root"
           routerLinkActive="active-link"

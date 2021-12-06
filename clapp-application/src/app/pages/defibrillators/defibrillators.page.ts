@@ -9,4 +9,8 @@ export class DefibrillatorsPage implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  menuIsOpen() {
+    
+  }
 }
