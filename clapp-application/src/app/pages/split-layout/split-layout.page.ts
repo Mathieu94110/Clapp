@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IEquipmentItems } from 'src/app/models/models';
 
 @Component({
   selector: 'app-split-layout',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./split-layout.page.scss'],
 })
 export class SplitLayoutPage implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
+  equipmentList: IEquipmentItems[] = [
+    {
+      path: '/app/defibrillators',
+      title: 'defibrillateurs',
+    },
+    {
+      path: '/app/orders',
+      title: 'commandes',
+    },
+  ];
 }

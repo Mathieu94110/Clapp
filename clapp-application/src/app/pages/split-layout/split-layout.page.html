@@ -1,34 +1,35 @@
-<ion-split-pane contentId="main" when="(min-width: 766px)">
+<ion-split-pane
+  contentId="main"
+  when="(min-width: 767px)"
+  class="menu-split-pane"
+>
   <ion-menu contentId="main" class="desktop-menu">
     <ion-header class="ion-no-border" style="height: '95.88px'">
-      <ion-title class="menu-desktop-title"
+      <ion-title class="menu-desktop-title ion-no-padding"
         ><img src="../../../assets/icon/lifeaz-logo.png"
       /></ion-title>
     </ion-header>
     <ion-content>
-      <ion-item class="desktop-menu-equipment-container">
-        <ion-label color="dark"> MATÉRIEL </ion-label>
-      </ion-item>
-      <ion-menu-toggle autoHide="false">
+      <ion-list class="ion-no-padding">
+        <ion-list-header lines="inset" class="desktop-menu-equipment-container">
+       
+            <img src="../../../assets/icon/equipment-icon.png" />
+         
+          <ion-label class="ion-text-uppercase">Matériel</ion-label>
+        </ion-list-header>
+
         <ion-item
+          *ngFor="let item of equipmentList"
           lines="none"
-          routerLink="/app/defibrillators"
+          routerLink="{{item.path}}"
           routerDirection="root"
           routerLinkActive="active-link"
+          class="equipment-label-size ion-no-padding"
         >
-          <ion-label> DÉFIBRILLATEURS </ion-label>
+          <div class="verticalLine"></div>
+          <ion-label class="ion-text-uppercase">{{item.title}}</ion-label>
         </ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle autoHide="false">
-        <ion-item
-          lines="none"
-          routerLink="/app/orders"
-          routerDirection="root"
-          routerLinkActive="active-link"
-        >
-          <ion-label> COMMANDES </ion-label>
-        </ion-item>
-      </ion-menu-toggle>
+      </ion-list>
     </ion-content>
   </ion-menu>
 
