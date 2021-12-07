@@ -1,3 +1,21 @@
+<ion-header class="mobile-header">
+  <ion-toolbar class="mobile-header" color="primary">
+    <ion-buttons slot="start">
+      <ion-button>
+        <img
+          src="../../../assets/icon/lifeaz-logo.png"
+          class="lifeaz-mobile-logo"
+        />
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" (click)="toggleNavbar()">
+      <img src="{{!navbarOpened ? burgerImg : markImg}}" />
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
 <ion-split-pane
   contentId="main"
   when="(min-width: 767px)"
@@ -12,15 +30,6 @@
     <ion-content>
       <ion-list class="ion-no-padding">
         <ion-list-header lines="inset">
-          <!-- <ion-thumbnail>
-            <img src="../../../assets/icon/equipment-icon.png" />
-          </ion-thumbnail>
-          <ion-label class="ion-text-uppercase">Matériel</ion-label>
-          <ion-thumbnail>
-            <img src="../../../assets/icon/down-arrow.png" />
-
-          </ion-thumbnail> -->
-
           <ion-chip>
             <img src="../../../assets/icon/equipment-icon.png" />
 
