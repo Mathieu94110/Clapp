@@ -11,13 +11,24 @@
     </ion-header>
     <ion-content>
       <ion-list class="ion-no-padding">
-        <ion-list-header lines="inset" class="desktop-menu-equipment-container">
-       
+        <ion-list-header lines="inset">
+          <!-- <ion-thumbnail>
             <img src="../../../assets/icon/equipment-icon.png" />
-         
+          </ion-thumbnail>
           <ion-label class="ion-text-uppercase">Matériel</ion-label>
-        </ion-list-header>
+          <ion-thumbnail>
+            <img src="../../../assets/icon/down-arrow.png" />
 
+          </ion-thumbnail> -->
+
+          <ion-chip>
+            <img src="../../../assets/icon/equipment-icon.png" />
+
+            <ion-label class="ion-text-uppercase">Matériel</ion-label>
+            <ion-icon name="chevron-down-outline"></ion-icon>
+          </ion-chip>
+        </ion-list-header>
+<ion-item-group >
         <ion-item
           *ngFor="let item of equipmentList"
           lines="none"
@@ -29,6 +40,7 @@
           <div class="verticalLine"></div>
           <ion-label class="ion-text-uppercase">{{item.title}}</ion-label>
         </ion-item>
+        </ion-item-group>
       </ion-list>
     </ion-content>
   </ion-menu>
