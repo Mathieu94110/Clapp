@@ -1,18 +1,25 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'app',
+    path: '',
+    redirectTo: 'defibrillators',
+    pathMatch: 'full',
+  },
+
+  {
+    path: 'defibrillators',
     loadChildren: () =>
-      import('./pages/split-layout/split-layout.module').then(
-        (m) => m.SplitLayoutPageModule
+      import('./pages/defibrillators/defibrillators.module').then(
+        (m) => m.DefibrillatorsPageModule
       ),
   },
   {
-    path: '',
-    redirectTo: 'app',
-    pathMatch: 'full',
+    path: 'orders',
+    loadChildren: () =>
+      import('./pages/orders/orders.module').then((m) => m.OrdersPageModule),
   },
 ];
 
@@ -20,6 +27,6 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule],
+  exports: [RouterModule, HttpClientModule],
 })
 export class AppRoutingModule {}

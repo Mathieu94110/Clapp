@@ -13,8 +13,9 @@ import { DefibrillatorsPage } from './defibrillators.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    DefibrillatorsPageRoutingModule
+    DefibrillatorsPageRoutingModule,
   ],
-  declarations: [DefibrillatorsPage]
+  declarations: [DefibrillatorsPage],
+  exports: [DefibrillatorsPage],
 })
 export class DefibrillatorsPageModule {}

@@ -1,35 +1,73 @@
-// @media(min-width:769px){
-// .mobile-header{
-//     display: none;
+@media screen and (min-width:767px){
+ion-content {
+    
+      ion-toolbar{
+        
+              inline-size: 476px;
+             overflow-wrap: break-word;
+          
+      margin: 144px 65px 0 65px;
+      ion-title{
+    font-size: 36px;
+    line-height: 30px;
+}
+ion-text{
+    font-size: 14px;
+    line-height: 17px;
+}
+      }
+}
+.searchbar-input { background: #FFF !important; border-radius: 30px !important; height: 40px !important; max-width: 400px; font-size: 1.25em !important; border: 1px solid transparent; }
+}
+@media screen and (max-width:766px){
+    ion-content {
+      ion-toolbar{
+          margin-top: 51px;
+      margin-left: 28px;
+      ion-title{
+    font-size: 21px;
+    line-height: 25px;
+}
+ion-text{
+    font-size: 14px;
+    line-height: 17px;
+}
+      }
+}
+ion-searchbar{
+ height: 67px;
+}
+}
 
-// }
+ion-content{
+    margin: 0 65px;
+   --ion-background-color: var(--ion-color-secondary) ;
+         ion-title{
+    color:var(--ion-color-primary);
+    font-family: Lato-Black;
+    padding: 0;
+    vertical-align: top;
+}
+ion-text{
+    font-family: Lato-Regular;
+    color: #000;
+}
+ion-searchbar{
+    margin: 0 65px;
+    border-radius: 10px;
+}
 
-// }
-// .mobile-header{
-//     height: 67px;
-// ion-buttons, .toolbar-container{
-//     margin: 0;
-//     padding: 0;
-// }
 
-// ion-toolbar{
-//    --padding-start: 28px ;
-//    --padding-end: 27px;
-// display: flex;
-// flex-direction: column;
-// justify-content: center;
 
-// .toolbar-container{
-// height: 100%;
-// display: flex;
-// justify-content: space-between;
-// }
+ion-grid{
+    padding: 36px 32px;
+    background-color: #fff;
+    border-radius: 10px;
+background-color: #fff;
+margin: 0 65px;
 
-// .lifeaz-mobile-logo{
-//   width:83px;
-//   height:26.6px;
-// }
+.list-label{
+    font-family: Lato-Bold;
+}}
 
-// }
-
-// }
+}

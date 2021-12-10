@@ -6,8 +6,8 @@ import { DefibrillatorsPage } from './defibrillators.page';
 const routes: Routes = [
   {
     path: '',
-    component: DefibrillatorsPage
-  }
+    component: DefibrillatorsPage,
+  },
 ];
 
 @NgModule({
