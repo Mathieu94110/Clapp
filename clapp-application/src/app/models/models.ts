@@ -10,3 +10,8 @@ export interface ICustomers {
   state: number;
   electrodesExpiry: string;
 }
+
+export interface IMenuItems {
+  path: string;
+  title: string;
+}

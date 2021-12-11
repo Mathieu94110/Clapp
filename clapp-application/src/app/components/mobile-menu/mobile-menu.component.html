@@ -1,0 +1,31 @@
+<ion-header
+  class="mobile-header"
+  [ngclass]="{ 'menu-open': navbarOpened, 'menu-closed': !navbarOpened }"
+>
+  <ion-toolbar color="primary" class="toolbar-container">
+    <ion-buttons slot="start">
+      <ion-button>
+        <img
+          src="../../../assets/icon/lifeaz-logo.png"
+          class="lifeaz-mobile-logo"
+        />
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" (click)="toggleNavbar()">
+      <img src="{{ !navbarOpened ? burgerImg : markImg }}" />
+    </ion-buttons>
+  </ion-toolbar>
+  <div *ngIf="navbarOpened">
+       <ion-item
+            *ngFor="let item of menuItems"
+            lines="none"
+            routerLink="{{ item.path }}"
+            routerDirection="root"
+            routerLinkActive="active-link"
+            class="equipment-label-size ion-no-padding"
+          >
+            <div class="verticalLine"></div>
+            <ion-label class="ion-text-uppercase">{{ item.title }}</ion-label>
+          </ion-item>
+  </div>
+</ion-header>

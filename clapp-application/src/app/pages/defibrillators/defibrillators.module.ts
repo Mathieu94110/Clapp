@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DefibrillatorsPageRoutingModule } from './defibrillators-routing.module';
 
 import { DefibrillatorsPage } from './defibrillators.page';
+import { MobileMenuComponent } from 'src/app/components/mobile-menu/mobile-menu.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { DefibrillatorsPage } from './defibrillators.page';
     IonicModule,
     DefibrillatorsPageRoutingModule,
   ],
-  declarations: [DefibrillatorsPage],
+  declarations: [DefibrillatorsPage, MobileMenuComponent],
   exports: [DefibrillatorsPage],
 })
 export class DefibrillatorsPageModule {}
