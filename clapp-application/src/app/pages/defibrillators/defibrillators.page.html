@@ -1,44 +1,55 @@
 <ion-content>
-  <ion-toolbar>
-    <ion-title>MES DÉFIBRILLATEURS</ion-title>
-    <ion-text>
-      Retrouvez-ici tous vos défibrillateurs. Vous pouvez voir s'ils sont
-      fonctionnels, s'ils nécissitent de la maintenance, et en rechercher en
-      particulier
-    </ion-text>
+  <ion-toolbar class="page-title">
+    <ion-title class="ion-text-uppercase">Mes défibrillateurs</ion-title>
+    <p>
+      <ion-text class="ion-padding">
+        Retrouvez-ici tous vos défibrillateurs. Vous pouvez voir s'ils sont
+        fonctionnels, s'ils nécissitent de la maintenance, et en rechercher en
+        particulier
+      </ion-text>
+    </p>
   </ion-toolbar>
 
-  <ion-searchbar
-    placeholder="Rechercher"
-    showCancelButton="focus"
-    animated
-  ></ion-searchbar>
+  <ion-searchbar placeholder="Rechercher"></ion-searchbar>
 
   <ion-grid>
-    <ion-row>
-      <ion-col class="list-label"> NUMÉRO DE SÉRIE </ion-col>
-      <ion-col class="list-label"> LOCALISATION </ion-col>
-      <ion-col class="list-label"> EMPLACEMENT </ion-col>
-      <ion-col class="list-label"> ÉTAT </ion-col>
-      <ion-col class="list-label"> DATE DE PÉREMPTION DES ÉLECTRODES </ion-col>
+    <ion-row class="ion-padding">
+      <ion-col class="list-label ion-text-uppercase" size="3">
+        Numéro de série
+      </ion-col>
+      <ion-col class="list-label ion-text-uppercase" size="3">
+        Localisation
+      </ion-col>
+      <ion-col class="list-label ion-text-uppercase" size="2">
+        Emplacement
+      </ion-col>
+      <ion-col class="list-label ion-text-uppercase" size="1"> État </ion-col>
+      <ion-col class="list-label ion-text-uppercase" size="3">
+        Date de péremption des électrodes
+      </ion-col>
     </ion-row>
     <ion-row *ngFor="let customer of customers index as i">
-      <ion-col class="list-label"> {{ customer.serial }} </ion-col>
-      <ion-col>
-        <div class="list-label">
-          <ion-icon name="location-outline"></ion-icon> {{ customer.locationName
-          }}
-        </div>
-        <div>{{ customer.locationAddr }}</div>
+      <ion-col class="list-label" size="3"> {{ customer.serial }} </ion-col>
+      <ion-col size="3">
+        <ion-row>
+          <ion-col size="2"
+            ><ion-icon name="location-outline" color="tertiary"></ion-icon
+          ></ion-col>
+          <ion-col size="10" class="list-label">
+            {{ customer.locationName }} {{ customer.locationAddr }}
+          </ion-col></ion-row
+        >
       </ion-col>
 
-      <ion-col> {{ customer.place }} </ion-col>
-      <ion-col>
+      <ion-col size="2" class="color-medium">{{ customer.place }} </ion-col>
+      <ion-col size="1">
         <img
           src="{{customer.state === '2' ? '../../../assets/icon/danger-state-icon.png' : customer.state === '1'  ?  '../../../assets/icon/warning-state-icon.png' : '../../../assets/icon/working-state-icon.png'}}"
         />
       </ion-col>
-      <ion-col> {{ customer.electrodesExpiry }} </ion-col>
+      <ion-col size="3" class="color-medium">
+        {{ customer.electrodesExpiry }}
+      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

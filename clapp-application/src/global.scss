@@ -12,7 +12,7 @@
 /* Core CSS required for Ionic components to work properly */
 // @import "~@ionic/angular/css/core.css";
 
-// /* Basic CSS for apps built with Ionic */
+/* Basic CSS for apps built with Ionic */
 // @import "~@ionic/angular/css/normalize.css";
 // @import "~@ionic/angular/css/structure.css";
 // @import "~@ionic/angular/css/typography.css";
@@ -22,7 +22,7 @@
 // @import "~@ionic/angular/css/padding.css";
 // @import "~@ionic/angular/css/float-elements.css";
 // @import "~@ionic/angular/css/text-alignment.css";
-// @import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/text-transformation.css";
 // @import "~@ionic/angular/css/flex-utils.css";
 
 
@@ -39,3 +39,22 @@
   src: url('./assets/fonts/Lato-Black.ttf');
 }
 
+body{
+  margin: 0;
+  padding: 0;
+}
+
+
+.searchbar-input {
+    background: #fff !important;
+    border-radius: 15px !important;
+    height: 62px !important;
+    width: 100%!important;
+    justify-content: center;
+}
+  .searchbar-search-icon.sc-ion-searchbar-md {
+    left: 16px;
+    top: 20px;
+    width: 22px;
+    height: 22px;
+}

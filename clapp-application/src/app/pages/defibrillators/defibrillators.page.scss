@@ -1,25 +1,30 @@
 @media screen and (min-width:767px){
 ion-content {
-    
-      ion-toolbar{
-        
+      .page-title{
               inline-size: 476px;
              overflow-wrap: break-word;
-          
-      margin: 144px 65px 0 65px;
+      margin: 144px 4% 0 4%;
       ion-title{
     font-size: 36px;
     line-height: 30px;
 }
 ion-text{
     font-size: 14px;
-    line-height: 17px;
+    line-height: 17px;      
 }
       }
+         ion-searchbar {
+        width: 92%;
+        padding: 19px 0;
+           --icon-color:var(--ion-color-primary);
+ }
 }
-.searchbar-input { background: #FFF !important; border-radius: 30px !important; height: 40px !important; max-width: 400px; font-size: 1.25em !important; border: 1px solid transparent; }
+
 }
 @media screen and (max-width:766px){
+    ion-header{
+        background-color: var(--ion-color-primary);
+    }
     ion-content {
       ion-toolbar{
           margin-top: 51px;
@@ -34,13 +39,10 @@ ion-text{
 }
       }
 }
-ion-searchbar{
- height: 67px;
-}
 }
 
 ion-content{
-    margin: 0 65px;
+
    --ion-background-color: var(--ion-color-secondary) ;
          ion-title{
     color:var(--ion-color-primary);
@@ -53,8 +55,8 @@ ion-text{
     color: #000;
 }
 ion-searchbar{
-    margin: 0 65px;
-    border-radius: 10px;
+margin: 0 4%;
+    border-radius: 15px;
 }
 
 
@@ -64,10 +66,13 @@ ion-grid{
     background-color: #fff;
     border-radius: 10px;
 background-color: #fff;
-margin: 0 65px;
+margin: 0 4% 144px;
 
 .list-label{
     font-family: Lato-Bold;
 }}
 
+}
+.color-medium{
+    color: var(--ion-color-medium);
 }
