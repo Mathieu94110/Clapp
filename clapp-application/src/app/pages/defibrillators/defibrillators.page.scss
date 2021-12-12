@@ -59,9 +59,37 @@ margin: 0 4%;
     border-radius: 15px;
 }
 
+}
+.color-medium{
+    color: var(--ion-color-medium);
+}
+
+.child-item{
+    --ion-item-background: #f3f2f1;
+    --padding-start: 8px;
+    --inner-padding-end: 8px;
+    margin-bottom:2px;
+}
 
 
-ion-grid{
+
+ul li{cursor:pointer;}
+.active{
+  color:blue;
+}
+.active ul{
+  display:block !important;
+}
+
+.inactive {
+  color: black;
+}
+
+
+
+ion-grid.desktop-screen-items{
+
+ 
     padding: 36px 32px;
     background-color: #fff;
     border-radius: 10px;
@@ -70,9 +98,78 @@ margin: 0 4% 144px;
 
 .list-label{
     font-family: Lato-Bold;
-}}
+}
+
+
 
 }
-.color-medium{
-    color: var(--ion-color-medium);
+
+ion-grid.mobile-screen-items{
+  padding: 0 23px;
+  margin: 0 28px 10px 28px;
+    height: 109px;
+    background-color: #fff;
+    border-radius: 15px;
+
+    ion-row{
+        height: 50%;
+        
+        
+    }
+ion-col{
+    padding: 0;
+}
+
+
+    .lato-bold{
+font-family: Lato-Bold;
+    }
+    .lato-black{
+ font-family: Lato-Black;
+    } 
+
+      
+            .content-centered-right{         
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:flex-end;
+    }
+       .content-centered-left{         
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:flex-start;
+    }
+   .location-labels{
+       padding: 0;
+       font-size: 14px;
+       max-width: 215px;
+        overflow-wrap: break-word;
+       line-height:16,8px;
+       white-space: normal;
+   }
+        .icon-size{
+            width: 20px;
+            height: 20px;
+        }
+
+
+      .sub-item{
+     padding: 0 23px;
+     width: 319px;
+  margin: 0 28px 10px 28px;
+    height: 109px;
+    background-color: #fff;
+    border-radius: 0 0 15px 0;
+}
+    }
+        
+
+
+
+ion-list{
+    padding: 0;
 }

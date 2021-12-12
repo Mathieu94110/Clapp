@@ -1,6 +1,4 @@
-
-  <app-mobile-menu></app-mobile-menu>
-
+<app-mobile-menu></app-mobile-menu>
 
 <ion-content>
   <ion-toolbar class="page-title">
@@ -16,44 +14,106 @@
 
   <ion-searchbar placeholder="Rechercher"></ion-searchbar>
 
-  <ion-grid>
-    <ion-row class="ion-padding">
-      <ion-col class="list-label ion-text-uppercase" size="3">
-        Numéro de série
-      </ion-col>
-      <ion-col class="list-label ion-text-uppercase" size="3">
-        Localisation
-      </ion-col>
-      <ion-col class="list-label ion-text-uppercase" size="2">
-        Emplacement
-      </ion-col>
-      <ion-col class="list-label ion-text-uppercase" size="1"> État </ion-col>
-      <ion-col class="list-label ion-text-uppercase" size="3">
-        Date de péremption des électrodes
-      </ion-col>
-    </ion-row>
-    <ion-row *ngFor="let customer of customers index as i">
-      <ion-col class="list-label" size="3"> {{ customer.serial }} </ion-col>
-      <ion-col size="3">
-        <ion-row>
-          <ion-col size="2"
-            ><ion-icon name="location-outline" color="tertiary"></ion-icon
-          ></ion-col>
-          <ion-col size="10" class="list-label">
-            {{ customer.locationName }} {{ customer.locationAddr }}
-          </ion-col></ion-row
-        >
-      </ion-col>
+  <div *ngIf="getScreenWidth >= 767;else mobileScreen">
+    <ion-grid class="desktop-screen-items">
+      <ion-row>
+        <ion-col class="list-label ion-text-uppercase" size="3">
+          Numéro de série
+        </ion-col>
+        <ion-col class="list-label ion-text-uppercase" size="3">
+          Localisation
+        </ion-col>
+        <ion-col class="list-label ion-text-uppercase" size="2">
+          Emplacement
+        </ion-col>
+        <ion-col class="list-label ion-text-uppercase" size="1"> État </ion-col>
+        <ion-col class="list-label ion-text-uppercase" size="3">
+          Date de péremption des électrodes
+        </ion-col>
+      </ion-row>
+      <ion-row *ngFor="let customer of customers; trackBy:trackItems">
+        <ion-col class="list-label" size="3"> {{ customer.serial }} </ion-col>
+        <ion-col size="3">
+          <ion-row>
+            <ion-col size="2"
+              ><ion-icon name="location-outline" color="tertiary"></ion-icon
+            ></ion-col>
+            <ion-col size="10" class="list-label">
+              {{ customer.locationName }} {{ customer.locationAddr }}
+            </ion-col></ion-row
+          >
+        </ion-col>
 
-      <ion-col size="2" class="color-medium">{{ customer.place }} </ion-col>
-      <ion-col size="1">
-        <img
-          src="{{customer.state === '2' ? '../../../assets/icon/danger-state-icon.png' : customer.state === '1'  ?  '../../../assets/icon/warning-state-icon.png' : '../../../assets/icon/working-state-icon.png'}}"
-        />
-      </ion-col>
-      <ion-col size="3" class="color-medium">
-        {{ customer.electrodesExpiry }}
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+        <ion-col size="2" class="color-medium">{{ customer.place }} </ion-col>
+        <ion-col size="1">
+          <img
+            src="{{customer.state === '2' ? '../../../assets/icon/danger-state-icon.png' : customer.state === '1'  ?  '../../../assets/icon/warning-state-icon.png' : '../../../assets/icon/working-state-icon.png'}}"
+          />
+        </ion-col>
+        <ion-col size="3" class="color-medium">
+          {{ customer.electrodesExpiry }}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ng-template #mobileScreen>
+    <ion-list
+      *ngFor="let item of customers; let i = index;"
+      class="accordion-list"
+      lines="none"
+      detail="false"
+    >
+      <ion-item>
+        <ion-grid class="mobile-screen-items">
+          <ion-row>
+            <ion-col size="9" class="content-centered-left">
+              <ion-label class="lato-bold">{{item.serial}} </ion-label>
+            </ion-col>
+            <ion-col size="3" class="content-centered-right">
+              <ion-label
+                ><img
+                  class="icon-size"
+                  src="{{item.state === '2' ? '../../../assets/icon/danger-state-icon.png' : item.state === '1'  ?  '../../../assets/icon/warning-state-icon.png' : '../../../assets/icon/working-state-icon.png'}}"
+                />
+              </ion-label>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="9">
+              <ion-label class="location-labels lato-black"
+                >{{item.locationName}}</ion-label
+              >
+              <ion-label class="location-labels"
+                >{{item.locationAddr}}</ion-label
+              >
+            </ion-col>
+            <ion-col size="3" class="content-centered-right">
+              <ion-label>
+                <ion-icon
+                  class="icon-size"
+                  (click)="toggleSection(i)"
+                  name="{{!item.open ? 'chevron-down-outline' : 'chevron-up-outline'}}"
+                  color="primary"
+                ></ion-icon>
+              </ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item *ngIf="item.open">
+        <ion-grid class="sub-item">
+          <ion-row>
+            <ion-label class="ion-text-uppercase">Emplacement</ion-label>
+            {{item.place}}
+          </ion-row>
+          <ion-row>
+            <ion-label class="ion-text-uppercase"
+              >Date de péremption des électrodes</ion-label
+            >
+            {{item.electrodesExpiry}}
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ion-list>
+  </ng-template>
 </ion-content>
