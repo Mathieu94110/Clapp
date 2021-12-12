@@ -3,10 +3,10 @@
 <ion-content>
   <ion-toolbar class="page-title">
     <ion-title class="ion-text-uppercase">Mes défibrillateurs</ion-title>
-    <p>
-      <ion-text class="ion-padding">
+    <p class="description-text-container">
+      <ion-text>
         Retrouvez-ici tous vos défibrillateurs. Vous pouvez voir s'ils sont
-        fonctionnels, s'ils nécissitent de la maintenance, et en rechercher en
+        fonctionnels, s'ils nécessitent de la maintenance, et en rechercher en
         particulier
       </ion-text>
     </p>
@@ -64,54 +64,59 @@
       detail="false"
     >
       <ion-item>
-        <ion-grid class="mobile-screen-items">
-          <ion-row>
-            <ion-col size="9" class="content-centered-left">
-              <ion-label class="lato-bold">{{item.serial}} </ion-label>
-            </ion-col>
-            <ion-col size="3" class="content-centered-right">
-              <ion-label
-                ><img
-                  class="icon-size"
-                  src="{{item.state === '2' ? '../../../assets/icon/danger-state-icon.png' : item.state === '1'  ?  '../../../assets/icon/warning-state-icon.png' : '../../../assets/icon/working-state-icon.png'}}"
-                />
-              </ion-label>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col size="9">
-              <ion-label class="location-labels lato-black"
-                >{{item.locationName}}</ion-label
-              >
-              <ion-label class="location-labels"
-                >{{item.locationAddr}}</ion-label
-              >
-            </ion-col>
-            <ion-col size="3" class="content-centered-right">
-              <ion-label>
-                <ion-icon
-                  class="icon-size"
-                  (click)="toggleSection(i)"
-                  name="{{!item.open ? 'chevron-down-outline' : 'chevron-up-outline'}}"
-                  color="primary"
-                ></ion-icon>
-              </ion-label>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-item>
-      <ion-item *ngIf="item.open">
-        <ion-grid class="sub-item">
-          <ion-row>
-            <ion-label class="ion-text-uppercase">Emplacement</ion-label>
-            {{item.place}}
-          </ion-row>
-          <ion-row>
-            <ion-label class="ion-text-uppercase"
-              >Date de péremption des électrodes</ion-label
-            >
-            {{item.electrodesExpiry}}
-          </ion-row>
+        <ion-grid
+          [ngClass]="{'full-mobile-items': item.open,
+                 'default-mobile-items': !item.open}"
+        >
+          <ion-col>
+            <ion-row>
+              <ion-col size="9" class="content-centered-left">
+                <ion-label class="lato-bold">{{item.serial}} </ion-label>
+              </ion-col>
+              <ion-col size="3" class="content-centered-right">
+                <ion-label
+                  ><img
+                    class="icon-size"
+                    src="{{item.state === '2' ? '../../../assets/icon/danger-state-icon.png' : item.state === '1'  ?  '../../../assets/icon/warning-state-icon.png' : '../../../assets/icon/working-state-icon.png'}}"
+                  />
+                </ion-label>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="9">
+                <ion-label class="location-labels lato-black"
+                  >{{item.locationName}}</ion-label
+                >
+                <ion-label class="location-labels"
+                  >{{item.locationAddr}}</ion-label
+                >
+              </ion-col>
+              <ion-col size="3" class="content-centered-right">
+                <ion-label>
+                  <ion-icon
+                    class="icon-size"
+                    (click)="toggleSection(i)"
+                    name="{{!item.open ? 'chevron-down-outline' : 'chevron-up-outline'}}"
+                    color="primary"
+                  ></ion-icon>
+                </ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+          <ion-col *ngIf="item.open">
+            <ion-grid class="sub-item">
+              <ion-row>
+                <ion-label class="ion-text-uppercase">Emplacement</ion-label>
+                {{item.place}}
+              </ion-row>
+              <ion-row>
+                <ion-label class="ion-text-uppercase"
+                  >Date de péremption des électrodes</ion-label
+                >
+                {{item.electrodesExpiry}}
+              </ion-row>
+            </ion-grid>
+          </ion-col>
         </ion-grid>
       </ion-item>
     </ion-list>
