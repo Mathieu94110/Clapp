@@ -74,10 +74,17 @@
 }
 
 .menu-split-pane .desktop-menu ion-content ion-list ion-item {
-  --inner-padding-end: 0px;
   width: 210px;
   padding: 0px;
   margin-left: 49px;
+}
+
+.menu-split-pane .desktop-menu ion-content ion-list ion-item .verticalLine {
+  width: 2px;
+  height: 100%;
+  background: var(--ion-color-tertiary);
+  left: 0px;
+  margin-right: 26px;
 }
 
 .dropdown {

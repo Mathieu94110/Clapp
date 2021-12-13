@@ -62,8 +62,6 @@ justify-content: center;
           
          }
 }
-
-
 }
 
          .active-link{
@@ -75,15 +73,17 @@ justify-content: center;
       }
 
     ion-item{
-  
-
-       --inner-padding-end: 0px;
     width: 210px;
     padding: 0px ;
     margin-left:49px;
+         .verticalLine {
+  width:2px;
+  height:100%;
+  background:var(--ion-color-tertiary);
+left: 0px;
+margin-right:26px;
 
-    //vertical line
-
+}
 }
 
 }

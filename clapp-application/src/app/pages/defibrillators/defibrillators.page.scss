@@ -43,19 +43,7 @@ ion-searchbar.sc-ion-searchbar-md-h.sc-ion-searchbar-md-s.md.searchbar-left-alig
       height: 67px !important;
     width: 319px!important;
 }
-// ion-searchbar.searchbar-input {
-//     background: #fff !important;
-//     border-radius: 15px !important;
-//     height: 67px !important;
-//     width: 319px !important;
-//     justify-content: center;
-//     margin: auto;
-// }
-// ion-searchbar {
-//     .sc-ion-searchbar-md-h sc-ion-searchbar-md-s md searchbar-left-aligned hydrated{
-//   height: 67px !important;
-//     width: 319px!important;
-//     }
+
      .searchbar-input-container.sc-ion-searchbar-md {
    
         
@@ -63,32 +51,6 @@ ion-searchbar.sc-ion-searchbar-md-h.sc-ion-searchbar-md-s.md.searchbar-left-alig
      width: 319px!important;
          
      }
-// }
-// ion-searchbar{
-//   height: 67px !important;
-//     width: 319px!important;
-// .searchbar-input {
-//     background: #fff !important;
-//     border-radius: 15px !important;
-  
-//     justify-content: center;
-// }
-//   .searchbar-search-icon.sc-ion-searchbar-md {
-//     left: 16px;
-//     top: 20px;
-//     width: 22px;
-//     height: 22px;
-// }
-// }
-//   ion-searchbar.mobile-searchbar {
-//         width: 319px;
-//         padding: 19px 0;
-//            --icon-color:var(--ion-color-primary);
-// //            ion-searchbar{
-// // margin: 0 4%;
-// //     border-radius: 15px;
-// // }
-//  }
       }
 }
 }
@@ -106,11 +68,6 @@ ion-text{
     font-family: Lato-Regular;
     color: #000;
 }
-// ion-searchbar{
-// margin: 0 4%;
-//     border-radius: 15px;
-// }
-
 }
 .color-medium{
     color: var(--ion-color-medium);
@@ -125,18 +82,15 @@ ion-text{
 
 ion-grid.desktop-screen-items{
 
- 
-    padding: 36px 32px;
-    background-color: #fff;
-    border-radius: 10px;
-background-color: #fff;
-margin: 0 4% 144px;
+      padding: 36px 32px;
+      background-color: #fff;
+      border-radius: 10px;
+      background-color: #fff;
+      margin: 0 4% 144px;
 
 .list-label{
     font-family: Lato-Bold;
 }
-
-
 
 }
 
@@ -150,9 +104,6 @@ ion-grid.default-mobile-items{
 
    .mobile-serial-row , .mobile-location-row{
         height: 54.5px;
-        /////////// test
- 
-     
     }
 
 .mobile-location-row{
@@ -178,7 +129,7 @@ font-family: Lato-Bold;
        max-width: 215px;
         overflow-wrap: break-word;
        white-space: normal;
-line-height : 17px;
+line-height : 16.8px;
 line-height: 100%;
   }
         .state-icon, .arrow-icon{
@@ -248,11 +199,11 @@ line-height: 13px;
 line-height: 100%;
 letter-spacing: 0.33px;
 }
+
  .mobile-electrodes-label-key{
-     
-       max-width: 125px;
-        overflow-wrap: break-word;
-       white-space: normal;  
+max-width: 125px;
+overflow-wrap: break-word;
+white-space: normal;  
 font-style: bold;
 font-size: 11px;
 line-height: 11px;
@@ -275,15 +226,9 @@ text-align: right;
       align-items: center;
 
     }
-    .mobile-electrodes-row{
-
-    }
 }
     }
         
-
-
-
 ion-list{
     padding: 0;
 }
@@ -311,7 +256,3 @@ line-height: 100%;
     }
 
 }
-.mobile-description-text-container{
-
-}
-
