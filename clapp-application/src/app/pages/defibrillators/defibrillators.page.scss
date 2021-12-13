@@ -1,9 +1,10 @@
+
 @media screen and (min-width:767px){
 ion-content {
       .page-title{
-              inline-size: 476px;
-             overflow-wrap: break-word;
-      margin: 144px 4% 0 4%;
+    inline-size: 476px;
+    overflow-wrap: break-word;
+    margin: 144px 4% 0 4%;
       ion-title{
     font-size: 36px;
     line-height: 30px;
@@ -19,9 +20,32 @@ ion-text{
            --icon-color:var(--ion-color-primary);
            margin: 0 4%;
  }
+ ion-grid.desktop-screen-items{
+      background-color: #fff;
+      border-radius: 10px;
+      background-color: #fff;
+      margin: 0 4% 40px;
+.list-label-keys-margin{
+    margin-bottom: 50px;
+}
+.list-label{
+    font-family: Lato-Bold;
+    font-size: 14px;
+}
+.list-label-normal{
+        font-family: Lato-Regular;
+    font-size: 14px;
 }
 
 }
+ .align-state-icon{
+     text-align: center;
+ }
+}
+
+}
+
+
 @media screen and (max-width:766px){
     ion-header{
         background-color: var(--ion-color-primary);
@@ -53,6 +77,25 @@ ion-searchbar.sc-ion-searchbar-md-h.sc-ion-searchbar-md-s.md.searchbar-left-alig
      }
       }
 }
+ion-list{
+    padding: 0;
+}
+}
+
+// responsive for desktop screen list padding
+
+@media (min-width: 767px) and (max-width: 1057px){
+ion-grid.desktop-screen-items{
+    padding-left: 0;
+    padding-right: 0;
+}
+}
+
+@media(min-width: 1058px){
+    ion-grid.desktop-screen-items{
+
+      padding: 36px 32px;
+}
 }
 
 ion-content{
@@ -63,34 +106,16 @@ ion-content{
     font-family: Lato-Black;
     padding: 0;
     vertical-align: top;
-}
 ion-text{
     font-family: Lato-Regular;
     color: #000;
 }
+
 }
 .color-medium{
     color: var(--ion-color-medium);
 }
 
-.child-item{
-    --ion-item-background: #f3f2f1;
-    --padding-start: 8px;
-    --inner-padding-end: 8px;
-    margin-bottom:2px;
-}
-
-ion-grid.desktop-screen-items{
-
-      padding: 36px 32px;
-      background-color: #fff;
-      border-radius: 10px;
-      background-color: #fff;
-      margin: 0 4% 40px;
-
-.list-label{
-    font-family: Lato-Bold;
-}
 
 }
 
@@ -101,10 +126,12 @@ ion-grid.default-mobile-items{
     width: 319px;
     background-color: #fff;
     border-radius: 15px;
-
-   .mobile-serial-row , .mobile-location-row{
-        height: 54.5px;
-    }
+   .vertical-center{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+  
 
 .mobile-location-row{
 align-items: flex-start;
@@ -112,6 +139,10 @@ align-items: flex-start;
 
 ion-col{
     padding: 0;
+     .mobile-serial-row , .mobile-location-row{
+        height: 54.5px;
+    }
+      
 }
 .lato-regular{
 font-family: Lato-Regular; 
@@ -137,21 +168,29 @@ line-height: 100%;
             height: 20px;
         }
 
+    .state-icon{
+        align-self: end;
+    } 
     }
 
     ion-grid.full-mobile-items{
+             .vertical-center{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
         width: 319px;
-         padding: 0 23px;
-  margin: 0 28px 10px 28px;
- 
-    background-color: #fff;
-    border-radius: 15px;
+        padding: 0 23px;
+        margin: 0 28px 10px 28px;
+        background-color: #fff;
+        border-radius: 15px;
 
     .mobile-serial-row , .mobile-location-row{
         height: 52.5px;
-        
+ 
         
     }
+    
 ion-col{
     padding: 0;
 }
@@ -228,31 +267,3 @@ text-align: right;
     }
 }
     }
-        
-ion-list{
-    padding: 0;
-}
-
- .mobile-serial-row , .mobile-location-row{
-        height: 54.5px;
-        padding: 0;
-        display: flex;
-     justify-content: space-between;
-     .mobile-icons-on-the-right{
-         text-align: end;
-     }
-     
-    }.mobile-serial-row{
-       align-items: center;
-       .mobile-item-serial{
-           font-size: 16px;
-line-height: 19px;
-line-height: 100%;
-       }
-}
-.mobile-page-title{
-    ion-title{
-        font-size: 21px;
-    }
-
-}
