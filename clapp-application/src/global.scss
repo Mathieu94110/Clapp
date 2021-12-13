@@ -58,7 +58,20 @@ body{
     width: 22px;
     height: 22px;
 }
+@media screen and (max-width:766px){
+.searchbar-input-container, .searchbar-input {
+    height: 67px !important; width: 319px!important;
+ margin: 0 auto 30px auto !important;
+ position: relative !important;
 
+ion-icon{
+      position: absolute !important;
+    left: 31.48px;
+    top: 26px;
+
+ }
+   }
+}
        .verticalLine {
   width:2px;
   height:100%;

@@ -16,6 +16,7 @@
     width: 92%;
     padding: 19px 0;
     --icon-color:var(--ion-color-primary);
+    margin: 0 4%;
   }
 }
 
@@ -35,10 +36,13 @@
   ion-content ion-toolbar ion-text {
     font-size: 14px;
   }
-  ion-content ion-toolbar ion-searchbar {
-    width: 319px;
-    padding: 19px 0;
-    --icon-color:var(--ion-color-primary);
+  ion-content ion-toolbar ion-searchbar.sc-ion-searchbar-md-h.sc-ion-searchbar-md-s.md.searchbar-left-aligned.hydrated {
+    height: 67px !important;
+    width: 319px !important;
+  }
+  ion-content ion-toolbar .searchbar-input-container.sc-ion-searchbar-md {
+    height: 67px !important;
+    width: 319px !important;
   }
 }
 
@@ -56,11 +60,6 @@ ion-content ion-title {
 ion-content ion-text {
   font-family: Lato-Regular;
   color: #000;
-}
-
-ion-content ion-searchbar {
-  margin: 0 4%;
-  border-radius: 15px;
 }
 
 .color-medium {
