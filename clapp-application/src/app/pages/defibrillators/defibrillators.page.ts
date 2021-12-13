@@ -8,6 +8,7 @@ import { HostListener } from '@angular/core';
   styleUrls: ['./defibrillators.page.scss'],
 })
 export class DefibrillatorsPage implements OnInit {
+  searchText: string;
   public getScreenWidth: any;
   public getScreenHeight: any;
   customers: any[];
