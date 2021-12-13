@@ -1,0 +1,45 @@
+@media screen and (min-width: 767px) {
+  ion-content ion-toolbar {
+    margin: 144px 65px 0 65px;
+  }
+  ion-content ion-toolbar ion-title {
+    font-size: 36px;
+    line-height: 30px;
+  }
+  ion-content ion-toolbar ion-text {
+    font-size: 14px;
+    line-height: 30px;
+  }
+}
+
+@media screen and (max-width: 766px) {
+  ion-content ion-toolbar {
+    margin-top: 51px;
+    margin-left: 28px;
+  }
+  ion-content ion-toolbar ion-title {
+    font-size: 21px;
+    line-height: 25px;
+  }
+  ion-content ion-toolbar ion-text {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+ion-content {
+  --ion-background-color: var(--ion-color-secondary) ;
+}
+
+ion-content ion-title {
+  color: var(--ion-color-primary);
+  font-family: Lato-Black;
+  padding: 0;
+  vertical-align: top;
+}
+
+ion-content ion-text {
+  font-family: Lato-Regular;
+  color: #000;
+}
+/*# sourceMappingURL=orders.page.css.map */

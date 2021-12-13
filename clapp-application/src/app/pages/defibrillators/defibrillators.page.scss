@@ -27,19 +27,18 @@ ion-text{
     }
     ion-content {
       ion-toolbar{
-          margin-top: 51px;
-      margin-left: 28px;
+         margin: 51px 28px 101px 29px;
+    width: calc(100% - 57px);
       ion-title{
+          margin-bottom: 10px;
     font-size: 21px;
     line-height: 25px;
 }
-.description-text-container{
-         font-size: 14px;
-    line-height: 16.8px;
-    font-family: Lato-Regular;
-  text-align: left;
-  margin: 10 28px 0 0;
+ion-text{
+
+    font-size: 14px;
 }
+
   ion-searchbar {
         width: 319px;
         padding: 19px 0;
@@ -100,19 +99,27 @@ ion-grid.default-mobile-items{
   padding: 0 23px;
   margin: 0 28px 10px 28px;
     height: 109px;
+    width: 319px;
     background-color: #fff;
     border-radius: 15px;
 
-    ion-row{
-        height: 50%;
-        
-        
+   .mobile-serial-row , .mobile-location-row{
+        height: 54.5px;
+        /////////// test
+ 
+     
     }
+
+.mobile-location-row{
+align-items: flex-start;
+}
+
 ion-col{
     padding: 0;
 }
-
-
+.lato-regular{
+font-family: Lato-Regular; 
+}
     .lato-bold{
 font-family: Lato-Bold;
     }
@@ -120,55 +127,32 @@ font-family: Lato-Bold;
  font-family: Lato-Black;
     } 
 
-      
-            .content-centered-right{         
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:flex-end;
-    }
-       .content-centered-left{         
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:flex-start;
-    }
    .location-labels{
        padding: 0;
        font-size: 14px;
        max-width: 215px;
         overflow-wrap: break-word;
-       line-height:16,8px;
        white-space: normal;
-   }
-        .icon-size{
+line-height : 17px;
+line-height: 100%;
+  }
+        .state-icon, .arrow-icon{
             width: 20px;
             height: 20px;
         }
 
-
-      .sub-item{
-     padding: 0 23px;
-     width: 319px;
-  margin: 0 28px 10px 28px;
-    height: 109px;
-    background-color: #fff;
-    border-radius: 0 0 15px 0;
-}
     }
 
     ion-grid.full-mobile-items{
-        height: 319px;
+        width: 319px;
          padding: 0 23px;
   margin: 0 28px 10px 28px;
  
     background-color: #fff;
     border-radius: 15px;
 
-    ion-row{
-        height: 50%;
+    .mobile-serial-row , .mobile-location-row{
+        height: 52.5px;
         
         
     }
@@ -183,22 +167,6 @@ font-family: Lato-Bold;
     .lato-black{
  font-family: Lato-Black;
     } 
-
-      
-            .content-centered-right{         
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:flex-end;
-    }
-       .content-centered-left{         
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:flex-start;
-    }
    .location-labels{
        padding: 0;
        font-size: 14px;
@@ -207,19 +175,64 @@ font-family: Lato-Bold;
        line-height:16,8px;
        white-space: normal;
    }
-        .icon-size{
-            width: 20px;
-            height: 20px;
-        }
+    .state-icon{
+display: none;
+    }
 
 
       .sub-item{
-     padding: 0 23px;
-     width: 319px;
-  margin: 0 28px 10px 28px;
-    height: 109px;
+    height: 113px;
     background-color: #fff;
     border-radius: 0 0 15px 0;
+    padding: 0;
+.mobile-sub-item-row{
+  width: 100%;
+height: 56.5px;
+display: flex;
+justify-content: space-between;
+.lato-bold{
+    font-family: Lato-Bold;
+}
+.lato-regular{
+    font-family: Lato-Regular;
+}
+.mobile-place-label-key{
+    font-style: bold;
+font-size: 11px;
+line-height: 13px;
+line-height: 100%;
+letter-spacing: 0.33px;
+}
+ .mobile-electrodes-label-key{
+     
+       max-width: 125px;
+        overflow-wrap: break-word;
+       white-space: normal;  
+font-style: bold;
+font-size: 11px;
+line-height: 11px;
+line-height: 83%;
+letter-spacing: 0.33px;
+   }
+   .mobile-place-label-value{
+          max-width: 121px;
+        overflow-wrap: break-word;
+       white-space: normal;
+
+  font-size: 14px;
+line-height: 17px;;
+line-height: 100%;
+text-align: right;
+       
+   }
+}
+    .mobile-place-row{
+      align-items: center;
+
+    }
+    .mobile-electrodes-row{
+
+    }
 }
     }
         
@@ -228,4 +241,31 @@ font-family: Lato-Bold;
 
 ion-list{
     padding: 0;
+}
+
+ .mobile-serial-row , .mobile-location-row{
+        height: 54.5px;
+        padding: 0;
+        display: flex;
+     justify-content: space-between;
+     .mobile-icons-on-the-right{
+         text-align: end;
+     }
+     
+    }.mobile-serial-row{
+       align-items: center;
+       .mobile-item-serial{
+           font-size: 16px;
+line-height: 19px;
+line-height: 100%;
+       }
+}
+.mobile-page-title{
+    ion-title{
+        font-size: 21px;
+    }
+
+}
+.mobile-description-text-container{
+
 }

@@ -1,0 +1,41 @@
+.mobile-header {
+  width: 100%;
+  background-color: var(--ion-color-primary);
+}
+
+.mobile-header .menu-open {
+  height: 173px;
+}
+
+.mobile-header menu.closed {
+  height: 67px;
+}
+
+.mobile-header ion-buttons, .mobile-header .toolbar-container {
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-header .toolbar-container {
+  --padding-start: 28px ;
+  --padding-end: 27px;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.mobile-header .toolbar-container .lifeaz-mobile-logo {
+  width: 83px;
+  height: 26.6px;
+}
+
+@media (min-width: 766px) {
+  .mobile-header {
+    display: none;
+  }
+}
+/*# sourceMappingURL=mobile-menu.component.css.map */
