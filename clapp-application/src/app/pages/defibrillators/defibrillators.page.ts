@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChildren } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HostListener } from '@angular/core';
+import { ICustomers } from 'src/app/models/models';
 
 @Component({
   selector: 'app-defibrillators',
@@ -9,8 +10,8 @@ import { HostListener } from '@angular/core';
 })
 export class DefibrillatorsPage implements OnInit {
   searchText: string;
-  public getScreenWidth: any;
-  public getScreenHeight: any;
+  public getScreenWidth: number;
+  public getScreenHeight: number;
   customers: any[];
   @ViewChildren('childItem') childItem;
 
@@ -19,7 +20,7 @@ export class DefibrillatorsPage implements OnInit {
   ngOnInit(): void {
     this.http
       .get('../../../assets/data/customers.json')
-      .subscribe((data: any[]) => {
+      .subscribe((data: ICustomers[]) => {
         this.customers = data;
       });
     this.getScreenWidth = window.innerWidth;

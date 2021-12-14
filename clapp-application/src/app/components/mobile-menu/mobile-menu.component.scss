@@ -1,3 +1,8 @@
+@media(min-width:766px){
+    .mobile-header{
+        display: none;
+    }
+}
 .mobile-header{
    .menu-open{
 height:173px
@@ -11,13 +16,10 @@ ion-buttons, .toolbar-container{
     margin: 0;
     padding: 0;
 }
-
-
-
 .toolbar-container{
 --padding-start: 28px ;
 --padding-end: 27px;
-height: 100%;
+height: 67px;
 display: flex;
 justify-content: space-between;
 
@@ -25,12 +27,54 @@ justify-content: space-between;
   width:83px;
   height:26.6px;
 }
-
 }
 }
+.accordion-container,
+.accordion-container .content {
+ 
+  transition: all .3s ease-in-out;
+}
+.accordion-container p {
 
-@media(min-width:766px){
-    .mobile-header{
-        display: none;
-    }
+  font-family: Lato-Regular;
+  color: #fff;
+  font-size: 12px;
+  line-height: 14.4px;
+  margin: 0;
+}
+.accordion-container p.active-link , .accordion-container p:hover  {
+  font-family: Lato-Black;
+}
+.accordion-container {
+  display: block;
+  cursor: pointer;
+  position: relative;
+}
+.accordion-container.open {
+  cursor: default;
+}
+
+.accordion-container .content {
+  opacity: 0;
+  display: none;
+}
+.accordion-container.open .content {
+           ::before{
+  content: "";
+        display: block;
+        position: absolute;
+        z-index: 1;
+        left: 28px;
+        top: 67px;
+        bottom: 30px;
+        border: 2px solid #3D3DC8;
+        border-width: 0 0 0 1px;
+
+}
+        height: 38px;
+        width: 131px;
+        padding:7.5px 0;
+        margin-left: 54px;
+        display: block;
+        opacity: 1;
 }

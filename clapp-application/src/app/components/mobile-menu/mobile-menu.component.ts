@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { HostBinding } from '@angular/core';
+import { Component } from '@angular/core';
 import { IMenuItems } from 'src/app/models/models';
 
 @Component({
@@ -8,23 +7,21 @@ import { IMenuItems } from 'src/app/models/models';
   templateUrl: './mobile-menu.component.html',
   styleUrls: ['./mobile-menu.component.scss'],
 })
-export class MobileMenuComponent implements OnInit {
-  @HostBinding('class.navbar-opened') navbarOpened = false;
+export class MobileMenuComponent {
   menuItems: IMenuItems[];
+  isListItemOpened: boolean = false;
   burgerImg: string = '../../assets/icon/burger-button-icon.png';
   markImg: string = '../../assets/icon/mark-icon.png';
 
-  constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {
+  constructor(private http: HttpClient) {
     this.http
       .get('../../../assets/data/menu-items.json')
       .subscribe((data: any[]) => {
         this.menuItems = data;
       });
   }
-  
-  toggleNavbar() {
-    this.navbarOpened = !this.navbarOpened;
+
+  toggleAccordion(): void {
+    this.isListItemOpened = !this.isListItemOpened;
   }
 }

@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { DefibrillatorsPageRoutingModule } from './defibrillators-routing.module';
 import { DefibrillatorsPage } from './defibrillators.page';
+import { FilterPipe } from '../../../pipes/filter.pipe';
 import { MobileMenuComponent } from 'src/app/components/mobile-menu/mobile-menu.component';
-import { FilterPipe } from '../../../pipes/filter.pipe'
 
 @NgModule({
   imports: [
@@ -14,8 +14,7 @@ import { FilterPipe } from '../../../pipes/filter.pipe'
     IonicModule,
     DefibrillatorsPageRoutingModule,
   ],
-  declarations: [DefibrillatorsPage, MobileMenuComponent,
-    FilterPipe],
+  declarations: [DefibrillatorsPage,MobileMenuComponent, FilterPipe],
   exports: [DefibrillatorsPage],
 })
 export class DefibrillatorsPageModule {}

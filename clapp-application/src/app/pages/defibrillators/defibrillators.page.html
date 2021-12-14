@@ -82,7 +82,6 @@
 
     <ion-searchbar
       placeholder="Rechercher"
-      type="text"
       [(ngModel)]="searchText"
     ></ion-searchbar>
     <div *ngIf="(customers | filter: searchText).length > 0">

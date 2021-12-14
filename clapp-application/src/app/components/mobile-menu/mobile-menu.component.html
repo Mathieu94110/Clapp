@@ -1,31 +1,26 @@
-<ion-header
-  class="mobile-header"
-  [ngclass]="{ 'menu-open': navbarOpened, 'menu-closed': !navbarOpened }"
->
-  <ion-toolbar color="primary" class="toolbar-container">
-    <ion-buttons slot="start">
-      <ion-button>
-        <img
-          src="../../../assets/icon/lifeaz-logo.png"
-          class="lifeaz-mobile-logo"
-        />
-      </ion-button>
-    </ion-buttons>
-    <ion-buttons slot="end" (click)="toggleNavbar()">
-      <img src="{{ !navbarOpened ? burgerImg : markImg }}" />
-    </ion-buttons>
-  </ion-toolbar>
-  <div *ngIf="navbarOpened">
-    <ion-item
-      *ngFor="let item of menuItems"
-      lines="none"
-      routerLink="{{ item.path }}"
-      routerDirection="root"
-      routerLinkActive="active-link"
-      class="equipment-label-size ion-no-padding"
-    >
-      <div class="verticalLine"></div>
-      <ion-label class="ion-text-uppercase">{{ item.title }}</ion-label>
-    </ion-item>
+<ion-header class="mobile-header">
+  <div class="accordion-container" [ngClass]="isListItemOpened ? 'open' : ''">
+    <ion-toolbar color="primary" class="toolbar-container">
+      <img
+        src="../../../assets/icon/lifeaz-logo.png"
+        class="lifeaz-mobile-logo"
+      />
+      <ion-buttons slot="end" (click)="toggleAccordion()">
+        <img src="{{ !isListItemOpened ? burgerImg : markImg }}" />
+      </ion-buttons>
+    </ion-toolbar>
+    <div *ngFor="let item of menuItems">
+      <div class="content">
+        <p>
+          <ion-label
+            class="ion-text-uppercase"
+            routerLink="{{ item.path }}"
+            routerDirection="root"
+            routerLinkActive="active-link"
+            >{{ item.title }}</ion-label
+          >
+        </p>
+      </div>
+    </div>
   </div>
 </ion-header>

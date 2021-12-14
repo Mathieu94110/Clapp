@@ -23,7 +23,6 @@ ion-text{
  ion-grid.desktop-screen-items{
       background-color: #fff;
       border-radius: 10px;
-      background-color: #fff;
       margin: 0 4% 40px;
 .list-label-keys-margin{
     margin-bottom: 50px;
@@ -174,6 +173,7 @@ line-height: 100%;
     }
 
     ion-grid.full-mobile-items{
+         
              .vertical-center{
             display: flex;
             flex-direction: column;
@@ -250,14 +250,13 @@ line-height: 83%;
 letter-spacing: 0.33px;
    }
    .mobile-place-label-value{
-          max-width: 121px;
-        overflow-wrap: break-word;
-       white-space: normal;
-
-  font-size: 14px;
-line-height: 17px;;
-line-height: 100%;
-text-align: right;
+    max-width: 121px;
+    overflow-wrap: break-word;
+    white-space: normal;
+    font-size: 14px;
+    line-height: 17px;;
+    line-height: 100%;
+    text-align: right;
        
    }
 }
@@ -265,5 +264,5 @@ text-align: right;
       align-items: center;
 
     }
+ }
 }
-    }
