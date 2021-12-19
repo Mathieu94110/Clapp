@@ -13,13 +13,9 @@
       </p>
     </ion-toolbar>
 
-    <ion-searchbar
-      placeholder="Rechercher"
-      type="text"
-      [(ngModel)]="searchText"
-    ></ion-searchbar>
+    <ion-searchbar placeholder="Rechercher" #searchText></ion-searchbar>
 
-    <ion-grid class="desktop-screen-items">
+    <!-- <ion-grid class="desktop-screen-items">
       <ion-row class="list-label-keys-margin">
         <ion-col class="list-label ion-text-uppercase" size="2">
           Numéro de série
@@ -67,7 +63,7 @@
           </ion-col>
         </ion-row>
       </div>
-    </ion-grid>
+    </ion-grid> -->
   </div>
   <ng-template #mobileScreen>
     <ion-toolbar class="mobile-page-title">
@@ -80,11 +76,8 @@
       </ion-text>
     </ion-toolbar>
 
-    <ion-searchbar
-      placeholder="Rechercher"
-      [(ngModel)]="searchText"
-    ></ion-searchbar>
-    <div *ngIf="(customers | filter: searchText).length > 0">
+    <ion-searchbar placeholder="Rechercher" #searchText></ion-searchbar>
+    <!-- <div *ngIf="(customers | filter: searchText).length > 0">
       <ion-list
         *ngFor="let item of customers | filter: searchText; let i = index"
         class="accordion-list"
@@ -158,6 +151,6 @@
           </ion-grid>
         </ion-item>
       </ion-list>
-    </div>
+    </div> -->
   </ng-template>
 </ion-content>

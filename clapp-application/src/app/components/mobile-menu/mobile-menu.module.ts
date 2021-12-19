@@ -4,12 +4,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MobileMenuComponent } from './mobile-menu.component';
 import { MobileMenuRoutingModule } from './mobile-routing.module';
-import { AccordionComponent } from '../accordion/accordion.component';
 
 @NgModule({
-  entryComponents: [AccordionComponent],
+  entryComponents: [],
   imports: [IonicModule, CommonModule, FormsModule, MobileMenuRoutingModule],
-  declarations: [MobileMenuComponent, AccordionComponent],
-  exports: [MobileMenuComponent, AccordionComponent],
+  declarations: [MobileMenuComponent],
+  exports: [MobileMenuComponent],
 })
 export class MobileMenuModule {}
