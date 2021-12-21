@@ -1,10 +1,10 @@
 [
   {
-    "path": "/defibrillators",
-    "title": "defibrillateurs"
+    "path": "/recipes",
+    "title": "recettes"
   },
   {
-    "path": "/orders",
-    "title": "commandes"
+    "path": "/my-recipes",
+    "title": "mes recettes"
   }
 ]

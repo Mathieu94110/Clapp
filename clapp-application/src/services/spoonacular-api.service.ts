@@ -13,14 +13,16 @@ export class SpoonacularApiService {
   constructor(private http: HttpClient) {}
 
   search(terms: Observable<string>) {
+    console.log(terms);
     return terms.pipe(
       debounceTime(1000),
       distinctUntilChanged(),
-      switchMap((value) => this.searchRecipes(value))
+      switchMap((term) => this.searchRecipes(term))
     );
   }
 
-  searchRecipes(value) {
+  searchRecipes(term) {
+    const value = term.detail.value;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http.get(`${this.url}?query=${value}&apiKey=${this.apiKey}`, {

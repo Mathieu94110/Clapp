@@ -5,19 +5,19 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'defibrillators',
+    redirectTo: 'recipes',
     pathMatch: 'full',
   },
 
   {
-    path: 'defibrillators',
+    path: 'recipes',
     loadChildren: () =>
       import('./pages/defibrillators/defibrillators.module').then(
         (m) => m.DefibrillatorsPageModule
       ),
   },
   {
-    path: 'orders',
+    path: 'my-recipes',
     loadChildren: () =>
       import('./pages/orders/orders.module').then((m) => m.OrdersPageModule),
   },

@@ -22,20 +22,37 @@ import {
   switchMap,
 } from 'rxjs/operators';
 
+interface IRecipesObject {
+  number: number;
+  offset: number;
+  results: IRecipes;
+  totalResults: number;
+}
+interface IRecipes {
+  id: number;
+  title: string;
+  image: string;
+  imageType: string;
+}
 @Component({
   selector: 'app-defibrillators',
   templateUrl: './defibrillators.page.html',
   styleUrls: ['./defibrillators.page.scss'],
 })
-export class DefibrillatorsPage implements AfterContentInit, OnDestroy {
-  searchTerm$ = new Subject<string>();
-
+export class DefibrillatorsPage implements AfterContentInit {
   public getScreenWidth: number;
   public getScreenHeight: number;
-  customers: Object;
-  keyupSubscription: Subscription;
+  public recipes: any;
+  searchTerm$ = new Subject<string>();
 
-  constructor(private apiServices: SpoonacularApiService) {}
+  constructor(private apiServices: SpoonacularApiService) {
+    this.apiServices
+      .search(this.searchTerm$)
+      .subscribe((results: IRecipesObject) => {
+        this.recipes = results.results;
+        console.log(this.recipes);
+      });
+  }
 
   ngAfterContentInit() {
     this.getScreenWidth = window.innerWidth;
@@ -49,16 +66,10 @@ export class DefibrillatorsPage implements AfterContentInit, OnDestroy {
   }
 
   toggleSection(index) {
-    this.customers[index].open = !this.customers[index].open;
+    // this.recipes[index].open = !this.recipes[index].open;
   }
 
   search($event) {
-    this.searchTerm$.next($event.target.value);
-    this.apiServices.search(this.searchTerm$).subscribe((results) => {
-      this.customers = results;
-    });
-  }
-  ngOnDestroy() {
-    this.keyupSubscription.unsubscribe();
+    this.searchTerm$.next($event);
   }
 }

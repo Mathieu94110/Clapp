@@ -12,9 +12,12 @@ ion-header{
     width: 100%;
     position:relative;
     img{
-        position:absolute;
-        bottom:22.3px;
-        left: 48px;
+    margin-left: 48px;
+        width: 80px;
+       height: auto;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
     }
 
    }
@@ -44,9 +47,10 @@ flex-direction: column;
 justify-content: center;
          img{
              position: absolute;
-              width: 12px;
-        height: 19px;
-       left: 30px;
+              width: 30px;
+        height: auto;
+       left: 20px;
+       bottom: calc(31.76px/2);
          }
          ion-label{
              position: absolute;

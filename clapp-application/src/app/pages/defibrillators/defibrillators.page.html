@@ -3,12 +3,12 @@
 <ion-content>
   <div *ngIf="getScreenWidth >= 767;else mobileScreen">
     <ion-toolbar class="page-title">
-      <ion-title class="ion-text-uppercase">Mes défibrillateurs</ion-title>
+      <ion-title class="ion-text-uppercase">Chercher une recette</ion-title>
       <p class="description-text-container">
         <ion-text>
-          Retrouvez-ici tous vos défibrillateurs. Vous pouvez voir s'ils sont
-          fonctionnels, s'ils nécessitent de la maintenance, et en rechercher en
-          particulier
+          Retrouvez-ici tous les recettes. Vous pouvez ensuite accéder aux
+          détails, pour savoir tout ce que vous avez besoin pour réussir vos
+          préparations
         </ion-text>
       </p>
     </ion-toolbar>
@@ -17,57 +17,23 @@
       placeholder="Rechercher"
       (ionChange)="search($event)"
     ></ion-searchbar>
-    <div style="width: 500px; height: 600px">{{customers}}</div>
+    <!-- <div style="width: 500px; height: 600px">{{recipes |json}}</div> -->
 
-    <!-- <ion-grid class="desktop-screen-items">
+    <ion-grid class="desktop-screen-items" *ngFor="let recipe of recipes">
       <ion-row class="list-label-keys-margin">
-        <ion-col class="list-label ion-text-uppercase" size="2">
-          Numéro de série
-        </ion-col>
-        <ion-col class="list-label ion-text-uppercase" size="3">
-          Localisation
-        </ion-col>
-        <ion-col class="list-label ion-text-uppercase" size="2">
-          Emplacement
-        </ion-col>
-        <ion-col class="list-label ion-text-uppercase ion-text-center" size="2">
-          État
-        </ion-col>
-        <ion-col class="list-label ion-text-uppercase" size="3">
-          Date de péremption des électrodes
-        </ion-col>
+        <ion-col class="list-label ion-text-uppercase">Id:</ion-col>
+        <ion-col class="list-label ion-text-uppercase"> Titre: </ion-col>
       </ion-row>
-      <div *ngIf="(customers | filter: searchText).length > 0">
-        <ion-row
-          *ngFor="let customer of customers | filter: searchText; trackBy:trackItems"
-        >
-          <ion-col class="list-label" size="2"> {{ customer.serial }} </ion-col>
-          <ion-col size="3">
-            <ion-row>
-              <ion-col size="2" class="ion-no-padding"
-                ><ion-icon name="location-outline" color="tertiary"></ion-icon
-              ></ion-col>
-              <ion-col size="10" class="list-label ion-no-padding">
-                <ion-row>{{ customer.locationName }}</ion-row>
-                <ion-row class="list-label-normal"
-                  >{{ customer.locationAddr }}</ion-row
-                >
-              </ion-col></ion-row
-            >
-          </ion-col>
-
-          <ion-col size="2" class="color-medium">{{ customer.place }} </ion-col>
-          <ion-col size="2" class="ion-text-center">
-            <img
-              src="{{customer.state === '2' ? '../../../assets/icon/danger-state-icon.png' : customer.state === '1'  ?  '../../../assets/icon/warning-state-icon.png' : '../../../assets/icon/working-state-icon.png'}}"
-            />
-          </ion-col>
-          <ion-col size="3" class="color-medium">
-            {{ customer.electrodesExpiry }}
-          </ion-col>
+      <div>
+        <ion-row>
+          <ion-col class="list-label"> {{ recipe.id }} </ion-col>
+          <ion-col class="list-label"> {{ recipe.title }} </ion-col>
+          <!-- <ion-col
+            ><img [src]="recip.image" width="200px" height="200px"
+          /></ion-col> -->
         </ion-row>
       </div>
-    </ion-grid> -->
+    </ion-grid>
   </div>
   <ng-template #mobileScreen>
     <ion-toolbar class="mobile-page-title">
@@ -84,7 +50,7 @@
       placeholder="Rechercher"
       (ionChange)="search($event)"
     ></ion-searchbar>
-
+    <div style="width: 500px; height: 600px">{{recipes |json}}</div>
     <!-- <div *ngIf="(customers | filter: searchText).length > 0">
       <ion-list
         *ngFor="let item of customers | filter: searchText; let i = index"
