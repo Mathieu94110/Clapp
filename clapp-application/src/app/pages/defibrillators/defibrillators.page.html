@@ -13,7 +13,11 @@
       </p>
     </ion-toolbar>
 
-    <ion-searchbar placeholder="Rechercher" #searchText></ion-searchbar>
+    <ion-searchbar
+      placeholder="Rechercher"
+      (ionChange)="search($event)"
+    ></ion-searchbar>
+    <div style="width: 500px; height: 600px">{{customers}}</div>
 
     <!-- <ion-grid class="desktop-screen-items">
       <ion-row class="list-label-keys-margin">
@@ -76,7 +80,11 @@
       </ion-text>
     </ion-toolbar>
 
-    <ion-searchbar placeholder="Rechercher" #searchText></ion-searchbar>
+    <ion-searchbar
+      placeholder="Rechercher"
+      (ionChange)="search($event)"
+    ></ion-searchbar>
+
     <!-- <div *ngIf="(customers | filter: searchText).length > 0">
       <ion-list
         *ngFor="let item of customers | filter: searchText; let i = index"

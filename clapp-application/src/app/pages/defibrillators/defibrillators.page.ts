@@ -7,7 +7,13 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { fromEvent, Subscription } from 'rxjs';
+import {
+  fromEvent,
+  Subscription,
+  BehaviorSubject,
+  Observable,
+  Subject,
+} from 'rxjs';
 import { SpoonacularApiService } from 'src/services/spoonacular-api.service';
 import {
   debounceTime,
@@ -22,12 +28,11 @@ import {
   styleUrls: ['./defibrillators.page.scss'],
 })
 export class DefibrillatorsPage implements AfterContentInit, OnDestroy {
-  apiKey: string = environment.apiKey;
-  @ViewChild('searchText', { static: true }) searchText: ElementRef;
+  searchTerm$ = new Subject<string>();
 
   public getScreenWidth: number;
   public getScreenHeight: number;
-  customers: any[];
+  customers: Object;
   keyupSubscription: Subscription;
 
   constructor(private apiServices: SpoonacularApiService) {}
@@ -35,18 +40,6 @@ export class DefibrillatorsPage implements AfterContentInit, OnDestroy {
   ngAfterContentInit() {
     this.getScreenWidth = window.innerWidth;
     this.getScreenHeight = window.innerHeight;
-
-    this.keyupSubscription = fromEvent(this.searchText.nativeElement, 'keyup')
-      .pipe(
-        debounceTime(1000),
-        map((event: Event) => (<HTMLInputElement>event.target).value),
-        distinctUntilChanged(),
-        switchMap((value) => this.apiServices.searchRecipes(value))
-      )
-      .subscribe((data) => {
-        console.log(data);
-        // this.customers= data
-      });
   }
 
   @HostListener('window:resize', ['$event'])
@@ -59,6 +52,12 @@ export class DefibrillatorsPage implements AfterContentInit, OnDestroy {
     this.customers[index].open = !this.customers[index].open;
   }
 
+  search($event) {
+    this.searchTerm$.next($event.target.value);
+    this.apiServices.search(this.searchTerm$).subscribe((results) => {
+      this.customers = results;
+    });
+  }
   ngOnDestroy() {
     this.keyupSubscription.unsubscribe();
   }
