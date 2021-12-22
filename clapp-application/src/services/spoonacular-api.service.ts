@@ -1,15 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { RecipeInfo } from '../app/models/models';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SpoonacularApiService {
   apiKey: string = environment.apiKey;
-  url: string = 'https://api.spoonacular.com/recipes/complexSearch';
+  url: string = 'https://api.spoonacular.com/recipes';
   constructor(private http: HttpClient) {}
 
   search(terms: Observable<string>) {
@@ -25,8 +27,17 @@ export class SpoonacularApiService {
     const value = term.detail.value;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.get(`${this.url}?query=${value}&apiKey=${this.apiKey}`, {
-      headers,
-    });
+    return this.http.get(
+      `${this.url}/complexSearch?query=${value}&apiKey=${this.apiKey}`,
+      {
+        headers,
+      }
+    );
+  }
+
+  getRecipeInfo(recipeId: number): Observable<RecipeInfo> {
+    return this.http
+      .get<RecipeInfo>(`${this.url}/${recipeId}/information`)
+      .pipe(catchError(() => of({} as RecipeInfo)));
   }
 }

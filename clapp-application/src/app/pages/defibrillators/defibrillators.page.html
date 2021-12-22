@@ -37,17 +37,21 @@
             justify-content: center;
           "
         >
-          <ion-col class="list-label ion-text-center" size="4">
-            
-<ion-text>{{ fake.title }}</ion-text>
+          <ion-col class="list-label ion-text-center" size="3">
+            <ion-text>{{ fake.title }}</ion-text>
           </ion-col>
-          <ion-col class="list-label ion-text-center" size="4">
-           <ion-text >{{ fake.id }}</ion-text>
+          <ion-col class="list-label ion-text-center" size="3">
+            <ion-text>{{ fake.id }}</ion-text>
           </ion-col>
 
-          <ion-col size="4" class="ion-text-center"
+          <ion-col size="3" class="ion-text-center"
             ><img [src]="fake.img" width="160px" height="160px"
           /></ion-col>
+          <ion-col>
+            <ion-button (click)="getRecipeInfo(fake.id)"
+              >Voir la recette</ion-button
+            >
+          </ion-col>
         </ion-row>
       </ion-item>
     </ion-grid>

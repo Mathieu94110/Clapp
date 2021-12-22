@@ -23,6 +23,8 @@ import {
 } from 'rxjs/operators';
 import * as fakeData from '../../../assets/data/basic-recipes.json';
 import { HttpClient } from '@angular/common/http';
+import { NavigationExtras, Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 interface IRecipesObject {
   number: number;
@@ -45,12 +47,21 @@ export class DefibrillatorsPage implements AfterContentInit {
   public getScreenWidth: number;
   public getScreenHeight: number;
   public recipes: any;
-  public fakeData;
+  public fakeData = {};
   searchTerm$ = new Subject<string>();
+  recipeDetails: any;
+
+  navigationExtras: NavigationExtras = {
+    queryParams: {
+      type: this.fakeData,
+    },
+  };
 
   constructor(
     private apiServices: SpoonacularApiService,
-    private http: HttpClient
+    private http: HttpClient,
+    private route: Router,
+    public nav: NavController
   ) {
     this.http
       .get('../../../assets/data/basic-recipes.json')
@@ -80,7 +91,18 @@ export class DefibrillatorsPage implements AfterContentInit {
     // this.recipes[index].open = !this.recipes[index].open;
   }
 
-  search($event) {
+  private search($event) {
     this.searchTerm$.next($event);
+  }
+
+  private getRecipeInfo(recipeId: number): void {
+    this.apiServices.getRecipeInfo(recipeId).subscribe((recipeInfo) => {
+      this.navigationExtras.queryParams.type = recipeInfo;
+    });
+    this.pushToNextScreenWithParams();
+  }
+
+  private pushToNextScreenWithParams() {
+    this.route.navigate(['recipe-detail'], this.navigationExtras);
   }
 }
