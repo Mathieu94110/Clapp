@@ -1,55 +1,58 @@
 <app-mobile-menu></app-mobile-menu>
 
 <ion-content>
-  <div *ngIf="getScreenWidth >= 767;else mobileScreen">
-    <ion-toolbar class="page-title">
-      <ion-title class="ion-text-uppercase">Chercher une recette</ion-title>
-      <p class="description-text-container">
-        <ion-text>
-          Retrouvez-ici tous les recettes. Vous pouvez ensuite accéder aux
-          détails, pour savoir tout ce que vous avez besoin pour réussir vos
-          préparations
-        </ion-text>
-      </p>
-    </ion-toolbar>
+  <ion-toolbar
+    [ngClass]="getScreenWidth >= 767 ? 'page-title' : 'mobile-page-title'"
+  >
+    <ion-title class="ion-text-uppercase">Chercher une recette</ion-title>
 
-    <ion-searchbar
-      placeholder="Rechercher"
-      (ionChange)="search($event)"
-    ></ion-searchbar>
-    <!-- <div style="width: 500px; height: 600px">{{recipes |json}}</div> -->
+    <ion-text
+      [ngClass]="{'description-text-container': getScreenWidth >= 767 }"
+    >
+      Retrouvez-ici tous les recettes. Vous pouvez ensuite accéder aux détails,
+      pour trouver tout ce dont vous avez besoin pour réussir vos préparations
+    </ion-text>
+  </ion-toolbar>
+  <ion-searchbar
+    placeholder="Rechercher"
+    (ionChange)="search($event)"
+  ></ion-searchbar>
 
-    <ion-grid class="desktop-screen-items" *ngFor="let recipe of recipes">
-      <ion-row class="list-label-keys-margin">
-        <ion-col class="list-label ion-text-uppercase">Id:</ion-col>
-        <ion-col class="list-label ion-text-uppercase"> Titre: </ion-col>
+  <ng-container *ngIf="getScreenWidth >= 767;else mobileScreen">
+    <ion-grid class="desktop-screen-items" *ngFor="let fake of fakeData">
+      <ion-row class="list-label-keys-margin ion-padding ion-margin">
+        <ion-col class="list-label ion-text-uppercase ion-text-center" size="4">
+          Titre
+        </ion-col>
+        <ion-col class="list-label ion-text-uppercase ion-text-center" size="4"
+          >Id</ion-col
+        >
       </ion-row>
-      <div>
-        <ion-row>
-          <ion-col class="list-label"> {{ recipe.id }} </ion-col>
-          <ion-col class="list-label"> {{ recipe.title }} </ion-col>
-          <!-- <ion-col
-            ><img [src]="recip.image" width="200px" height="200px"
-          /></ion-col> -->
+      <ion-item class="ion-padding">
+        <ion-row
+          style="
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          "
+        >
+          <ion-col class="list-label ion-text-center" size="4">
+            
+<ion-text>{{ fake.title }}</ion-text>
+          </ion-col>
+          <ion-col class="list-label ion-text-center" size="4">
+           <ion-text >{{ fake.id }}</ion-text>
+          </ion-col>
+
+          <ion-col size="4" class="ion-text-center"
+            ><img [src]="fake.img" width="160px" height="160px"
+          /></ion-col>
         </ion-row>
-      </div>
+      </ion-item>
     </ion-grid>
-  </div>
+  </ng-container>
   <ng-template #mobileScreen>
-    <ion-toolbar class="mobile-page-title">
-      <ion-title class="ion-text-uppercase">Mes défibrillateurs</ion-title>
-
-      <ion-text>
-        Retrouvez-ici tous vos défibrillateurs. Vous pouvez voir s'ils sont
-        fonctionnels, s'ils nécessitent de la maintenance, et en rechercher en
-        particulier
-      </ion-text>
-    </ion-toolbar>
-
-    <ion-searchbar
-      placeholder="Rechercher"
-      (ionChange)="search($event)"
-    ></ion-searchbar>
     <div style="width: 500px; height: 600px">{{recipes |json}}</div>
     <!-- <div *ngIf="(customers | filter: searchText).length > 0">
       <ion-list

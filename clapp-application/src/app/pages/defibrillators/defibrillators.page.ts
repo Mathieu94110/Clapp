@@ -21,6 +21,8 @@ import {
   map,
   switchMap,
 } from 'rxjs/operators';
+import * as fakeData from '../../../assets/data/basic-recipes.json';
+import { HttpClient } from '@angular/common/http';
 
 interface IRecipesObject {
   number: number;
@@ -43,9 +45,18 @@ export class DefibrillatorsPage implements AfterContentInit {
   public getScreenWidth: number;
   public getScreenHeight: number;
   public recipes: any;
+  public fakeData;
   searchTerm$ = new Subject<string>();
 
-  constructor(private apiServices: SpoonacularApiService) {
+  constructor(
+    private apiServices: SpoonacularApiService,
+    private http: HttpClient
+  ) {
+    this.http
+      .get('../../../assets/data/basic-recipes.json')
+      .subscribe((data) => {
+        this.fakeData = data;
+      });
     this.apiServices
       .search(this.searchTerm$)
       .subscribe((results: IRecipesObject) => {
