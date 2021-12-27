@@ -12,14 +12,14 @@ const routes: Routes = [
   {
     path: 'recipes',
     loadChildren: () =>
-      import('./pages/defibrillators/defibrillators.module').then(
-        (m) => m.DefibrillatorsPageModule
-      ),
+      import('./pages/recipe/recipe.module').then((m) => m.RecipePageModule),
   },
   {
     path: 'my-recipes',
     loadChildren: () =>
-      import('./pages/orders/orders.module').then((m) => m.OrdersPageModule),
+      import('./pages/my-recipes/my-recipes.module').then(
+        (m) => m.MyRecipesPageModule
+      ),
   },
   {
     path: 'recipe-details',
@@ -34,7 +34,12 @@ const routes: Routes = [
       import('./pages/recipe-details/recipe-details.module').then(
         (m) => m.RecipeDetailsPageModule
       ),
+  },  {
+    path: 'wines',
+    loadChildren: () => import('./pages/wines/wines.module').then( m => m.WinesPageModule)
   },
+
+
 ];
 
 @NgModule({

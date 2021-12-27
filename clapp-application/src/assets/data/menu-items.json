@@ -6,5 +6,9 @@
   {
     "path": "/my-recipes",
     "title": "mes recettes"
+  },
+  {
+    "path": "/wines",
+    "title": "vins"
   }
 ]

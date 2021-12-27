@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { DefibrillatorsPageRoutingModule } from './defibrillators-routing.module';
-import { DefibrillatorsPage } from './defibrillators.page';
+import { RecipePageRoutingModule } from './recipe-routing.module';
+import { RecipePage } from './recipe.page';
 import { FilterPipe } from '../../../pipes/filter.pipe';
 import { MobileMenuComponent } from 'src/app/components/mobile-menu/mobile-menu.component';
 
@@ -12,9 +12,9 @@ import { MobileMenuComponent } from 'src/app/components/mobile-menu/mobile-menu.
     CommonModule,
     FormsModule,
     IonicModule,
-    DefibrillatorsPageRoutingModule,
+    RecipePageRoutingModule,
   ],
-  declarations: [DefibrillatorsPage, MobileMenuComponent, FilterPipe],
-  exports: [DefibrillatorsPage],
+  declarations: [RecipePage, MobileMenuComponent, FilterPipe],
+  exports: [RecipePage],
 })
-export class DefibrillatorsPageModule {}
+export class RecipePageModule {}

@@ -6,11 +6,11 @@ import { NavController } from '@ionic/angular';
 import { IRecipesObject } from 'src/app/models/models';
 
 @Component({
-  selector: 'app-defibrillators',
-  templateUrl: './defibrillators.page.html',
-  styleUrls: ['./defibrillators.page.scss'],
+  selector: 'app-recipe',
+  templateUrl: './recipe.page.html',
+  styleUrls: ['./recipe.page.scss'],
 })
-export class DefibrillatorsPage implements AfterContentInit {
+export class RecipePage implements AfterContentInit {
   public getScreenWidth: number;
   public getScreenHeight: number;
   public recipes: any;
