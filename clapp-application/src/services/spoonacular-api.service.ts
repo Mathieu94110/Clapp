@@ -2,7 +2,12 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+  tap,
+} from 'rxjs/operators';
 import { RecipeInfo } from '../app/models/models';
 import { catchError } from 'rxjs/operators';
 
@@ -35,9 +40,15 @@ export class SpoonacularApiService {
     );
   }
 
-  getRecipeInfo(recipeId: number): Observable<RecipeInfo> {
+  getRecipeInfo(recipeId: string): Observable<RecipeInfo> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http
-      .get<RecipeInfo>(`${this.url}/${recipeId}/information`)
+      .get<RecipeInfo>(
+        `${this.url}/${recipeId}/information?includeNutrition=false&apiKey=${this.apiKey}`,
+        {
+          headers,
+        }
+      )
       .pipe(catchError(() => of({} as RecipeInfo)));
   }
 }
