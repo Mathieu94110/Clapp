@@ -1,31 +1,31 @@
 [
   {
     "title": "titre 1",
-    "id": "01",
+    "id": 1,
     "img": "assets/icon/chef.png",
     "details": "Details recipe 1"
   },
   {
     "title": "titre 2",
-    "id": "02",
+    "id": 2,
     "img": "assets/icon/chef.png",
     "details": "Details recipe 2"
   },
   {
     "title": "titre 3",
-    "id": "03",
+    "id": 3,
     "img": "assets/icon/chef.png",
     "details": "Details recipe 3"
   },
   {
     "title": "titre 4",
-    "id": "04",
+    "id": 4,
     "img": "assets/icon/chef.png",
     "details": "Details recipe 4"
   },
   {
     "title": "titre 5",
-    "id": "05",
+    "id": 5,
     "img": "assets/icon/chef.png",
     "details": "Details recipe 5"
   }

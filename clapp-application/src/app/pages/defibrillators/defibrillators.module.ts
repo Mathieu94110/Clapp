@@ -14,7 +14,7 @@ import { MobileMenuComponent } from 'src/app/components/mobile-menu/mobile-menu.
     IonicModule,
     DefibrillatorsPageRoutingModule,
   ],
-  declarations: [DefibrillatorsPage,MobileMenuComponent, FilterPipe],
+  declarations: [DefibrillatorsPage, MobileMenuComponent, FilterPipe],
   exports: [DefibrillatorsPage],
 })
 export class DefibrillatorsPageModule {}

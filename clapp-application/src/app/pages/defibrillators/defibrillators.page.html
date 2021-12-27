@@ -19,16 +19,16 @@
   ></ion-searchbar>
 
   <ng-container *ngIf="getScreenWidth >= 767;else mobileScreen">
-    <ion-grid class="desktop-screen-items" *ngFor="let fake of fakeData">
+    <ion-grid class="desktop-screen-items" *ngFor="let recipe of recipes">
       <ion-row class="list-label-keys-margin ion-padding ion-margin">
-        <ion-col class="list-label ion-text-uppercase ion-text-center" size="4">
+        <ion-col class="list-label ion-text-uppercase ion-text-center" size="3">
           Titre
         </ion-col>
-        <ion-col class="list-label ion-text-uppercase ion-text-center" size="4"
+        <ion-col class="list-label ion-text-uppercase ion-text-center" size="3"
           >Id</ion-col
         >
       </ion-row>
-      <ion-item class="ion-padding">
+      <ion-item class="ion-padding" lines="none">
         <ion-row
           style="
             width: 100%;
@@ -38,17 +38,17 @@
           "
         >
           <ion-col class="list-label ion-text-center" size="3">
-            <ion-text>{{ fake.title }}</ion-text>
+            <ion-text>{{ recipe.title }}</ion-text>
           </ion-col>
           <ion-col class="list-label ion-text-center" size="3">
-            <ion-text>{{ fake.id }}</ion-text>
+            <ion-text>{{ recipe.id }}</ion-text>
           </ion-col>
 
           <ion-col size="3" class="ion-text-center"
-            ><img [src]="fake.img" width="160px" height="160px"
+            ><img [src]="recipe.image" width="160px" height="160px"
           /></ion-col>
-          <ion-col>
-            <ion-button (click)="getRecipeInfo(fake.id)"
+          <ion-col size="3" class="ion-text-center">
+            <ion-button (click)="goToRecipeDetailsPage(recipe.id)"
               >Voir la recette</ion-button
             >
           </ion-col>

@@ -1,9 +1,52 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>recipe-details</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-mobile-menu></app-mobile-menu>
+<div style="width: 100%; height: 100%">
+  <ion-button (click)="goBack()" class="ion-padding"> Retour </ion-button>
+  <ion-content class="test" *ngIf="recipesDetails">
+    <ion-card class="details-card">
+      <img [src]="recipesDetails.image" fullscreen class="ion-padding" />
+      <ion-card-header>
+        <ion-card-title><h2>{{ recipesDetails.title }}</h2></ion-card-title>
+        <ion-card-subtitle>
+          <ion-badge color="primary"
+            >{{ recipesDetails.spoonacularScore }}</ion-badge
+          >
+          <ion-text><h2>Recette</h2></ion-text>
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item [innerHTML]="recipesDetails.summary"> </ion-item>
+        <ion-label>Durée de préparation</ion-label>
+        <ion-item>{{ recipesDetails.readyInMinutes }}</ion-item>
+        <ion-label>Portion</ion-label>
+        <ion-item>{{ recipesDetails.servings }}</ion-item>
 
-<ion-content>
+        <div
+          *ngIf="recipesDetails.vegetarian"
+          style="margin-bottom: 16px; margin-left: 5px; color: darkgreen"
+        >
+          (Veg {{ recipesDetails.vegan ? ", Végétarien" : "" }}{{
+          recipe.glutenFree ? ", Sans gluten" : "" }}{{ recipe.dairyFree ? ",
+          Sans produits laitiers" : "" }})
+        </div>
 
-</ion-content>
+        <div>
+          <h3 class="heading">Instructions:</h3>
+          <div
+            *ngFor="let instruction of recipesDetails.extendedIngredients"
+            style="margin-left: 5px"
+          >
+            <div *ngFor="let step of instruction.steps">
+              <h4 class="heading">
+                Step {{ step.number }}
+                <span style="font-weight: normal"
+                  >(Ingredients: {{ showIngredients(step.ingredients) }})</span
+                >
+              </h4>
+              <p>{{ step.step }}</p>
+            </div>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+</div>

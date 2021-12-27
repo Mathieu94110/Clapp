@@ -1,43 +1,10 @@
-import {
-  AfterContentInit,
-  HostListener,
-  Component,
-  ViewChild,
-  ElementRef,
-  OnDestroy,
-} from '@angular/core';
-import { environment } from '../../../environments/environment';
-import {
-  fromEvent,
-  Subscription,
-  BehaviorSubject,
-  Observable,
-  Subject,
-} from 'rxjs';
+import { AfterContentInit, HostListener, Component } from '@angular/core';
+import { Subject } from 'rxjs';
 import { SpoonacularApiService } from 'src/services/spoonacular-api.service';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  map,
-  switchMap,
-} from 'rxjs/operators';
-import * as fakeData from '../../../assets/data/basic-recipes.json';
-import { HttpClient } from '@angular/common/http';
 import { NavigationExtras, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { IRecipesObject } from 'src/app/models/models';
 
-interface IRecipesObject {
-  number: number;
-  offset: number;
-  results: IRecipes;
-  totalResults: number;
-}
-interface IRecipes {
-  id: number;
-  title: string;
-  image: string;
-  imageType: string;
-}
 @Component({
   selector: 'app-defibrillators',
   templateUrl: './defibrillators.page.html',
@@ -47,27 +14,18 @@ export class DefibrillatorsPage implements AfterContentInit {
   public getScreenWidth: number;
   public getScreenHeight: number;
   public recipes: any;
-  public fakeData = {};
+  public selectedData: any[] = [];
   searchTerm$ = new Subject<string>();
-  recipeDetails: any;
 
   navigationExtras: NavigationExtras = {
-    queryParams: {
-      type: this.fakeData,
-    },
+    state: this.selectedData,
   };
 
   constructor(
     private apiServices: SpoonacularApiService,
-    private http: HttpClient,
     private route: Router,
     public nav: NavController
   ) {
-    this.http
-      .get('../../../assets/data/basic-recipes.json')
-      .subscribe((data) => {
-        this.fakeData = data;
-      });
     this.apiServices
       .search(this.searchTerm$)
       .subscribe((results: IRecipesObject) => {
@@ -87,22 +45,11 @@ export class DefibrillatorsPage implements AfterContentInit {
     this.getScreenHeight = window.innerHeight;
   }
 
-  toggleSection(index) {
-    // this.recipes[index].open = !this.recipes[index].open;
-  }
-
-  private search($event) {
+  search($event) {
     this.searchTerm$.next($event);
   }
 
-  private getRecipeInfo(recipeId: number): void {
-    this.apiServices.getRecipeInfo(recipeId).subscribe((recipeInfo) => {
-      this.navigationExtras.queryParams.type = recipeInfo;
-    });
-    this.pushToNextScreenWithParams();
-  }
-
-  private pushToNextScreenWithParams() {
-    this.route.navigate(['recipe-detail'], this.navigationExtras);
+  goToRecipeDetailsPage(id) {
+    this.route.navigate(['recipe-details', id]);
   }
 }
