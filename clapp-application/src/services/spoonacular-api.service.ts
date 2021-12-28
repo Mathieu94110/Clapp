@@ -51,4 +51,42 @@ export class SpoonacularApiService {
       )
       .pipe(catchError(() => of({} as RecipeInfo)));
   }
+
+  getWinePairing(food: string, maxPrice: number) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.http.get(
+      `https://api.spoonacular.com/food/wine/pairing?food=${food}&maxPrice=${maxPrice}&apiKey=${this.apiKey}`,
+      {
+        headers,
+      }
+    );
+  }
+
+  getWineDescription(wine: string) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.http.get(
+      `https://api.spoonacular.com/food/wine/description?wine=${wine}&apiKey=${this.apiKey}`,
+      {
+        headers,
+      }
+    );
+  }
+
+  getWineRecommandation(
+    wine: string,
+    quantity: number,
+    maxPrice: number,
+    minRating: number
+  ) {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+    return this.http.get(
+      `https://api.spoonacular.com/food/wine/recommendation?wine=${wine}&number=${quantity}&maxPrice=${maxPrice}&minRating=${minRating}&apiKey=${this.apiKey}`,
+      {
+        headers,
+      }
+    );
+  }
 }

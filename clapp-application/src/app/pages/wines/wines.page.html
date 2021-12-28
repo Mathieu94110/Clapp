@@ -1,3 +1,9 @@
 <app-mobile-menu></app-mobile-menu>
 
-<ion-content> </ion-content>
+<ion-content [fullscreen]="true" class="bg-gray">
+  <app-accordion
+    *ngFor="let item of winesCategories"
+    name="{{ item?.title }}"
+    description="{{ item?.text }}"
+  ></app-accordion>
+</ion-content>

@@ -1,0 +1,12 @@
+<div class="accordion-container" (click)="toggleAccordion()" [ngClass]="isListItemOpened ? 'open' : ''">
+  <h1>
+    {{ name }}
+    <div class="arrow"></div>
+  </h1>
+  
+  <div class="content">
+    <p>
+      {{ description }}
+    </p>
+  </div>
+</div>
