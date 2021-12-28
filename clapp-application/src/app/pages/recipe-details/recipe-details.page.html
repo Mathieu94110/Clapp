@@ -7,45 +7,73 @@
       <ion-card-header>
         <ion-card-title><h2>{{ recipesDetails.title }}</h2></ion-card-title>
         <ion-card-subtitle>
-          <ion-badge color="primary"
-            >{{ recipesDetails.spoonacularScore }}</ion-badge
+          <div
+            *ngIf="recipesDetails.vegetarian"
+            style="margin-bottom: 16px; margin-left: 5px; color: darkgreen"
           >
-          <ion-text><h2>Recette</h2></ion-text>
+            ( Vegan {{ recipesDetails.vegan ? ", Végétarien" : "" }}{{
+            recipesDetails.glutenFree ? ", Sans gluten" : "" }}{{
+            recipesDetails.dairyFree ? ", Sans produits laitiers" : "" }})
+          </div>
+          <ion-item>
+            <ion-label><h2 class="item-keys">Score</h2></ion-label>
+            <ion-badge color="primary" class="ion-margin-auto"
+              >{{ recipesDetails.spoonacularScore }}</ion-badge
+            >
+          </ion-item>
         </ion-card-subtitle>
       </ion-card-header>
       <ion-card-content>
-        <ion-item [innerHTML]="recipesDetails.summary"> </ion-item>
-        <ion-label>Durée de préparation</ion-label>
-        <ion-item>{{ recipesDetails.readyInMinutes }}</ion-item>
-        <ion-label>Portion</ion-label>
-        <ion-item>{{ recipesDetails.servings }}</ion-item>
-
-        <div
-          *ngIf="recipesDetails.vegetarian"
-          style="margin-bottom: 16px; margin-left: 5px; color: darkgreen"
-        >
-          (Veg {{ recipesDetails.vegan ? ", Végétarien" : "" }}{{
-          recipe.glutenFree ? ", Sans gluten" : "" }}{{ recipe.dairyFree ? ",
-          Sans produits laitiers" : "" }})
-        </div>
+        <h2 class="ion-text-start item-keys">Recette</h2>
+        <ion-item>
+          <ion-text
+            [innerHTML]="recipesDetails.summary"
+            class="ion-margin-bottom"
+          >
+          </ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label><h2 class="item-keys">Portion</h2></ion-label>
+          {{ recipesDetails.servings }}
+        </ion-item>
+        <ion-item>
+          <ion-label><h2 class="item-keys">Durée de préparation</h2></ion-label>
+          {{ recipesDetails.readyInMinutes + ' min'}}
+        </ion-item>
 
         <div>
-          <h3 class="heading">Instructions:</h3>
-          <div
-            *ngFor="let instruction of recipesDetails.extendedIngredients"
-            style="margin-left: 5px"
+          <ion-text class="ion-text-start"
+            ><h2 class="item-keys">Préparation</h2></ion-text
           >
-            <div *ngFor="let step of instruction.steps">
-              <h4 class="heading">
-                Step {{ step.number }}
-                <span style="font-weight: normal"
-                  >(Ingredients: {{ showIngredients(step.ingredients) }})</span
+          <div *ngFor="let instruction of recipesDetails.analyzedInstructions">
+            <div *ngFor="let step of instruction.steps" class="ion-text-start">
+              <ion-item lines="none">
+                <ion-label>Étape {{ step.number }}</ion-label>
+                <ion-text
+                  >(Ingredients: {{ showIngredients(step.ingredients)
+                  }})</ion-text
                 >
-              </h4>
+              </ion-item>
+
               <p>{{ step.step }}</p>
             </div>
           </div>
         </div>
+
+        <ion-list>
+          <ion-list-header class="ion-no-padding"
+            ><h2 class="item-keys">Liste des ingrédients</h2></ion-list-header
+          >
+          <ion-item
+            lines="none"
+            *ngFor="let instruction of recipesDetails.extendedIngredients"
+          >
+            <ion-label> Ingédients </ion-label>
+            <p>{{instruction.aisle}}</p>
+            <ion-label> Quantités </ion-label>
+            <p>{{instruction.originalString}}</p>
+          </ion-item>
+        </ion-list>
       </ion-card-content>
     </ion-card>
   </ion-content>
