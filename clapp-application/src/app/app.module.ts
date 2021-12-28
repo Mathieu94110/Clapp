@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { httpInterceptorProviders } from 'src/interceptors/http-interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,10 +16,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    httpInterceptorProviders,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

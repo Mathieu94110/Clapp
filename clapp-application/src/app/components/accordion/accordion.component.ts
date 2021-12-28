@@ -18,7 +18,7 @@ export class AccordionComponent implements OnInit {
 
   ngOnInit() {}
 
-  toggleAccordion(): void {
+  wineRecommandationToggleAccordion(): void {
     this.isListItemOpened = !this.isListItemOpened;
   }
 }

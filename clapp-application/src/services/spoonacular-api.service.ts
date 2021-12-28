@@ -1,13 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import {
-  debounceTime,
-  distinctUntilChanged,
-  switchMap,
-  tap,
-} from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { RecipeInfo } from '../app/models/models';
 import { catchError } from 'rxjs/operators';
 
@@ -15,7 +9,6 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class SpoonacularApiService {
-  apiKey: string = environment.apiKey;
   url: string = 'https://api.spoonacular.com/recipes';
   constructor(private http: HttpClient) {}
 
@@ -30,47 +23,27 @@ export class SpoonacularApiService {
 
   searchRecipes(term) {
     const value = term.detail.value;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-    return this.http.get(
-      `${this.url}/complexSearch?query=${value}&apiKey=${this.apiKey}`,
-      {
-        headers,
-      }
-    );
+    return this.http.get(`${this.url}/complexSearch?query=${value}`);
   }
 
   getRecipeInfo(recipeId: string): Observable<RecipeInfo> {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http
       .get<RecipeInfo>(
-        `${this.url}/${recipeId}/information?includeNutrition=false&apiKey=${this.apiKey}`,
-        {
-          headers,
-        }
+        `${this.url}/${recipeId}/information?includeNutrition=false`
       )
       .pipe(catchError(() => of({} as RecipeInfo)));
   }
 
   getWinePairing(food: string, maxPrice: number) {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-
     return this.http.get(
-      `https://api.spoonacular.com/food/wine/pairing?food=${food}&maxPrice=${maxPrice}&apiKey=${this.apiKey}`,
-      {
-        headers,
-      }
+      `https://api.spoonacular.com/food/wine/pairing?food=${food}&maxPrice=${maxPrice}`
     );
   }
 
   getWineDescription(wine: string) {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-
     return this.http.get(
-      `https://api.spoonacular.com/food/wine/description?wine=${wine}&apiKey=${this.apiKey}`,
-      {
-        headers,
-      }
+      `https://api.spoonacular.com/food/wine/description?wine=${wine}`
     );
   }
 
@@ -80,13 +53,8 @@ export class SpoonacularApiService {
     maxPrice: number,
     minRating: number
   ) {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-
     return this.http.get(
-      `https://api.spoonacular.com/food/wine/recommendation?wine=${wine}&number=${quantity}&maxPrice=${maxPrice}&minRating=${minRating}&apiKey=${this.apiKey}`,
-      {
-        headers,
-      }
+      `https://api.spoonacular.com/food/wine/recommendation?wine=${wine}&number=${quantity}&maxPrice=${maxPrice}&minRating=${minRating}`
     );
   }
 }

@@ -1,12 +1,47 @@
-<div class="accordion-container" (click)="toggleAccordion()" [ngClass]="isListItemOpened ? 'open' : ''">
-  <h1>
-    {{ name }}
-    <div class="arrow"></div>
-  </h1>
-  
-  <div class="content">
-    <p>
-      {{ description }}
-    </p>
+<div style="width: 400px; height: auto">
+  <div
+    class="accordion-container"
+    (click)="wineRecommandationToggleAccordion()"
+    [ngClass]="isListItemOpened ? 'open' : ''"
+  >
+    <h1>
+      Recommandations de vins
+      <div class="arrow"></div>
+    </h1>
+
+    <div class="content">
+      <p>Description Recommandations de vins</p>
+    </div>
+  </div>
+  <div
+    class="accordion-container"
+    (click)="wineDescriptionToggleAccordion()"
+    [ngClass]="isListItemOpened ? 'open' : ''"
+  >
+    <h1>
+      Description de vins
+      <div class="arrow"></div>
+    </h1>
+
+    <div class="content">
+      <p>Description Description de vins</p>
+    </div>
+  </div>
+  <div
+    class="accordion-container"
+    (click)="wineAssociateToggleAccordion()"
+    [ngClass]="isListItemOpened ? 'open' : ''"
+  >
+    <h1>
+      Vins à associer
+      <div class="arrow"></div>
+    </h1>
+
+    <div class="content">
+      <p>Description vins à associer</p>
+    </div>
   </div>
 </div>
+<!-- *ngFor="let item of winesCategories"
+    name="{{ item?.title }}"
+    description="{{ item?.text }}" -->
