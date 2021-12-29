@@ -5,7 +5,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { httpInterceptorProviders } from 'src/interceptors/http-interceptor';
 
 @NgModule({
@@ -16,6 +16,7 @@ import { httpInterceptorProviders } from 'src/interceptors/http-interceptor';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],

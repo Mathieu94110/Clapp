@@ -1,15 +1,21 @@
+.content-wrapper{
+    height: 100%;
+    width: 100%;
+    display: flex;
+
 .accordion-container,
 .accordion-container .arrow,
 .accordion-container .arrow:before,
 .accordion-container .arrow:after,
 .accordion-container .content {
-  transition: all .3s ease-in-out;
+  transition: all .4s ease-in-out;
 }
 
 .accordion-container .arrow {
   position: absolute;
   top: 50%;
   right: 5%;
+  
 }
 
 .accordion-container .arrow,
@@ -27,6 +33,7 @@
   background-color: black;
   position: absolute;
   transform: rotate(45deg);
+    
 }
 
 .accordion-container .arrow:after {
@@ -37,6 +44,7 @@
   position: absolute;
   right: -15px;
   transform: rotate(-45deg);
+
 }
 
 .accordion-container.open .arrow:before {
@@ -47,13 +55,9 @@
   transform: rotate(45deg);
 }
 
-
-/* Arrow Animation Styles End */
-
 .accordion-container h1 {
     font-size: 1rem;
     position: relative;
-    width: 100%;
     display: block;
     margin: 0px;
     padding-right: 28px;
@@ -70,8 +74,7 @@
   position: relative;
   background: white;
   padding: 10px;
-  margin: 10px;
-  width: 400px;
+  margin: 10px 0px;
 }
 
 .accordion-container.open {
@@ -79,7 +82,7 @@
 }
 
 .accordion-container:hover {
-  background: #ebebeb;
+  background:var(--ion-color-primary);
 }
 
 .accordion-container.open:hover {
@@ -94,4 +97,10 @@
 .accordion-container.open .content {
     display: block;
     opacity: 1;
+}
+
+
+ion-item{
+    --background:#fff
+}
 }

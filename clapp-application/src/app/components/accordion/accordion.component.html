@@ -1,47 +1,149 @@
-<div style="width: 400px; height: auto">
-  <div
-    class="accordion-container"
-    (click)="wineRecommandationToggleAccordion()"
-    [ngClass]="isListItemOpened ? 'open' : ''"
-  >
-    <h1>
-      Recommandations de vins
-      <div class="arrow"></div>
-    </h1>
+<ion-content class="ion-padding">
+  <div class="content-wrapper">
+    <ion-grid
+      style="display: flex; flex-direction: column; justify-content: center"
+    >
+      <ion-row>
+        <ion-col
+          size-xs="12"
+          size-m="6"
+          size-l="6"
+          size-xl="6"
+          class="ion-text-center"
+        >
+          <div style="width: 400px">
+            <div
+              class="accordion-container"
+              [ngClass]="isRecommandationListItemOpened ? 'open' : ''"
+            >
+              <h1>
+                Recommandations de vins
+                <div
+                  class="arrow"
+                  (click)="wineRecommandationToggleAccordion()"
+                ></div>
+              </h1>
+              <form
+                class="content"
+                [formGroup]="wineForm"
+                (ngSubmit)="submitForm()"
+                novalidate
+              >
+                <ion-item lines="full">
+                  <ion-label position="floating">Vin</ion-label>
+                  <ion-input
+                    formControlName="wine"
+                    type="text"
+                    required
+                  ></ion-input>
+                </ion-item>
 
-    <div class="content">
-      <p>Description Recommandations de vins</p>
-    </div>
-  </div>
-  <div
-    class="accordion-container"
-    (click)="wineDescriptionToggleAccordion()"
-    [ngClass]="isListItemOpened ? 'open' : ''"
-  >
-    <h1>
-      Description de vins
-      <div class="arrow"></div>
-    </h1>
+                <ion-item lines="full">
+                  <ion-label position="floating">Quantité</ion-label>
+                  <ion-input
+                    formControlName="quantity"
+                    type="text"
+                    required
+                  ></ion-input>
+                </ion-item>
 
-    <div class="content">
-      <p>Description Description de vins</p>
-    </div>
-  </div>
-  <div
-    class="accordion-container"
-    (click)="wineAssociateToggleAccordion()"
-    [ngClass]="isListItemOpened ? 'open' : ''"
-  >
-    <h1>
-      Vins à associer
-      <div class="arrow"></div>
-    </h1>
+                <ion-item lines="full">
+                  <ion-label position="floating">Prix minimum</ion-label>
+                  <ion-input
+                    formControlName="minPrice"
+                    type="text"
+                    required
+                  ></ion-input>
+                </ion-item>
 
-    <div class="content">
-      <p>Description vins à associer</p>
-    </div>
+                <ion-item lines="full">
+                  <ion-label position="floating">Prix maximum</ion-label>
+                  <ion-input
+                    formControlName="maxPrice"
+                    type="text"
+                    required
+                  ></ion-input>
+                </ion-item>
+                <ion-row>
+                  <ion-col>
+                    <ion-button type="submit" color="danger" expand="block"
+                      >Submit</ion-button
+                    >
+                  </ion-col>
+                </ion-row>
+              </form>
+            </div>
+          </div>
+          <div style="width: 400px">
+            <div
+              class="accordion-container"
+              [ngClass]="isDescriptionListItemOpened ? 'open' : ''"
+            >
+              <h1>
+                Description de vins
+                <div
+                  class="arrow"
+                  (click)="wineDescriptionToggleAccordion()"
+                ></div>
+              </h1>
+
+              <form class="content">
+                <ion-item lines="full">
+                  <ion-label position="floating">Vin</ion-label>
+                  <ion-input type="text" required></ion-input>
+                </ion-item>
+                <ion-col>
+                  <ion-button type="submit" color="danger" expand="block"
+                    >Submit</ion-button
+                  >
+                </ion-col>
+              </form>
+            </div>
+          </div>
+          <div style="width: 400px">
+            <div
+              class="accordion-container"
+              (click)="wineAssociateToggleAccordion()"
+              [ngClass]="isWineToAssociateListItemOpened ? 'open' : ''"
+            >
+              <h1>
+                Vins à associer
+                <div
+                  class="arrow"
+                  (click)="winesToAssociateToggleAccordion()"
+                ></div>
+              </h1>
+
+              <form class="content">
+                <ion-item lines="full">
+                  <ion-label position="floating">Plat</ion-label>
+                  <ion-input type="text" required></ion-input>
+                </ion-item>
+                <ion-item lines="full">
+                  <ion-label position="floating">Prix maximum</ion-label>
+                  <ion-input type="text" required></ion-input>
+                </ion-item>
+                <ion-col>
+                  <ion-button type="submit" color="danger" expand="block"
+                    >Submit</ion-button
+                  >
+                </ion-col>
+              </form>
+            </div>
+          </div>
+        </ion-col>
+        <ion-col>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
+            tenetur inventore nostrum exercitationem, quae ipsa ad in sapiente
+            obcaecati omnis, numquam quaerat consequatur qui error ab earum,
+            ipsum assumenda. Consequuntur Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Ex eum quaerat mollitia harum quam! Eligendi
+            maiores reiciendis adipisci, corporis esse blanditiis voluptate,
+            consectetur officiis vel eius mollitia tempora, minus laborum.
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
-</div>
-<!-- *ngFor="let item of winesCategories"
-    name="{{ item?.title }}"
-    description="{{ item?.text }}" -->
+</ion-content>
