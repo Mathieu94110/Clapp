@@ -1,0 +1,65 @@
+<ion-content>
+  <swiper
+    *ngIf="winesRecommandation"
+    #swiper
+    [slidesPerView]="1"
+    [spaceBetween]="50"
+    [virtual]="true"
+    [pagination]="true"
+    (slideChange)="swiperSlideChanged($event)"
+    [allowTouchMove]="false"
+    class="swiper"
+  >
+    <ng-template
+      swiperSlide
+      *ngFor="
+                let wine of winesRecommandation.recommendedWines;
+                index as i
+              "
+    >
+      <ion-card style="width: 300px" class="ion-text-center">
+        <div
+          class="
+            ion-justify-content-center ion-text-center ion-align-items-center
+          "
+        >
+          <img
+            [src]="wine.imageUrl"
+            class="ion-margin-auto"
+            style="height: 150px"
+          />
+        </div>
+        <ion-card-header>
+          <ion-card-subtitle>{{ wine.score }} / 10</ion-card-subtitle>
+          <ion-card-title>{{ wine.title }}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-item
+            *ngIf="wine.description"
+            style="height: 100px; overflow-y: scroll"
+          >
+            {{ wine.description }}
+          </ion-item>
+
+          <ion-item
+            href="{{ wine.link }}"
+            target="_blank"
+            color="primary"
+            class="ion-text-center"
+            lines="none"
+          >
+            <ion-label> Détails </ion-label>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
+  </swiper>
+  <ion-row>
+    <ion-button expand="full" (click)="prev()">
+      <ion-icon name="arrow-back-circle-outline"></ion-icon>
+    </ion-button>
+    <ion-button expand="full" (click)="next()">
+      <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-row>
+</ion-content>

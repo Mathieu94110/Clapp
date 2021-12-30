@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { httpInterceptorProviders } from 'src/interceptors/http-interceptor';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { httpInterceptorProviders } from 'src/interceptors/http-interceptor';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    SwiperModule,
     HttpClientModule,
   ],
   providers: [

@@ -48,9 +48,9 @@
                 </ion-item>
 
                 <ion-item lines="full">
-                  <ion-label position="floating">Prix minimum</ion-label>
+                  <ion-label position="floating">Note minimale</ion-label>
                   <ion-input
-                    formControlName="minPrice"
+                    formControlName="minRating"
                     type="text"
                     required
                   ></ion-input>
@@ -132,16 +132,66 @@
             </div>
           </div>
         </ion-col>
-        <ion-col>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
-            tenetur inventore nostrum exercitationem, quae ipsa ad in sapiente
-            obcaecati omnis, numquam quaerat consequatur qui error ab earum,
-            ipsum assumenda. Consequuntur Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Ex eum quaerat mollitia harum quam! Eligendi
-            maiores reiciendis adipisci, corporis esse blanditiis voluptate,
-            consectetur officiis vel eius mollitia tempora, minus laborum.
-          </p>
+        <ion-col
+          size-xs="12"
+          size-m="6"
+          size-l="6"
+          size-xl="6"
+          class="ion-text-center"
+        >
+          <swiper
+            *ngIf="winesRecommandation.length > 2"
+            #swiper
+            [slidesPerView]="1"
+            [spaceBetween]="50"
+            [virtual]="true"
+            [pagination]="true"
+            (slideChange)="swiperSlideChanged($event)"
+            [allowTouchMove]="false"
+            style="width: 600px; height: 800px; background-color: coral"
+          >
+            <ng-template
+              swiperSlide
+              *ngFor="
+                let wine of winesRecommandation.recommendedWines;
+                index as i
+              "
+            >
+              <ion-card style="width: 300px" class="ion-text-center">
+                <img [src]="wine.imageUrl" class="ion-padding" />
+                <ion-card-header>
+                  <ion-card-subtitle>{{ wine.score }} / 10</ion-card-subtitle>
+                  <ion-card-title>{{ wine.title }}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-text *ngIf="wine.description">
+                    {{ wine.description }}
+                  </ion-text>
+
+                  <ion-item
+                    href="{{ wine.link }}"
+                    target="_blank"
+                    color="primary"
+                    class="ion-text-center"
+                    lines="none"
+                  >
+                    <ion-label> Détails </ion-label>
+                  </ion-item>
+                </ion-card-content>
+              </ion-card>
+            </ng-template>
+            <ion-row>
+              <ion-button expand="full" (click)="prev()">
+                <ion-icon name="arrow-back-circle-outline"></ion-icon>
+              </ion-button>
+              <ion-button expand="full" (click)="toggleTouch()">
+                <ion-icon name="lock-open-outline"></ion-icon>
+              </ion-button>
+              <ion-button expand="full" (click)="next()">
+                <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+              </ion-button>
+            </ion-row>
+          </swiper>
         </ion-col>
       </ion-row>
     </ion-grid>

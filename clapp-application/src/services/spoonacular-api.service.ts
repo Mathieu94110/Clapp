@@ -52,7 +52,7 @@ export class SpoonacularApiService {
     quantity: number,
     maxPrice: number,
     minRating: number
-  ) {
+  ): Observable<any> {
     return this.http.get(
       `https://api.spoonacular.com/food/wine/recommendation?wine=${wine}&number=${quantity}&maxPrice=${maxPrice}&minRating=${minRating}`
     );

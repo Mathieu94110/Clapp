@@ -11,29 +11,22 @@ import { Observable } from 'rxjs';
 import { SpoonacularApiService } from 'src/services/spoonacular-api.service';
 import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, { SwiperOptions, Pagination, Virtual } from 'swiper';
-
+import { HttpClient } from '@angular/common/http';
 SwiperCore.use([Pagination, Virtual]);
-
 @Component({
-  selector: 'app-accordion',
-  templateUrl: './accordion.component.html',
-  styleUrls: ['./accordion.component.scss'],
+  selector: 'app-carrousel',
+  templateUrl: './carrousel.page.html',
+  styleUrls: ['./carrousel.page.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class AccordionComponent implements OnInit, AfterContentChecked {
-  @Input()
-  name: string;
-
-  @Input()
-  description: string;
-
+export class CarrouselPage implements OnInit {
   wineForm: FormGroup;
   isSubmitted = false;
   isRecommandationListItemOpened: boolean = false;
   isDescriptionListItemOpened: boolean = false;
   isWineToAssociateListItemOpened: boolean = false;
   // winesRecommandation$: Observable<any[]>;
-  winesRecommandation: any[] = [];
+  winesRecommandation: any;
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
 
   // config: SwiperOptions = {
@@ -44,22 +37,27 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
   touchAllowed: boolean = false;
   constructor(
     public formBuilder: FormBuilder,
-    private spoonacularService: SpoonacularApiService
+    private spoonacularService: SpoonacularApiService,
+    private http: HttpClient
   ) {}
 
   ngOnInit() {
-    this.wineForm = this.formBuilder.group({
-      wine: ['', [Validators.required, Validators.minLength(2)]],
-      quantity: [
-        '',
-        [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)],
-      ],
-      minRating: ['', [Validators.required, Validators.pattern(/[0-9]{0,1}/)]],
-      maxPrice: [
-        '',
-        [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)],
-      ],
-    });
+    // this.http.get('assets/data/basic-recipes.json').subscribe((data) => {
+    //   this.winesRecommandation = data;
+    //   console.log(this.winesRecommandation);
+    // });
+
+    const wine = 'merlot';
+    const quantity = 6;
+    const maxPrice = 100;
+    const minRating = 0;
+
+    this.spoonacularService
+      .getWineRecommandation(wine, quantity, maxPrice, minRating)
+      .subscribe((data) => {
+        this.winesRecommandation = data;
+        console.log(this.winesRecommandation);
+      });
   }
 
   ngAfterContentChecked() {
@@ -76,10 +74,6 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
   prev() {
     this.swiper.swiperRef.slidePrev(500);
   }
-  ToggleTouch() {
-    this.touchAllowed = this.touchAllowed;
-    this.swiper.swiperRef.allowTouchMove = this.touchAllowed;
-  }
 
   wineRecommandationToggleAccordion(): void {
     this.isRecommandationListItemOpened = !this.isRecommandationListItemOpened;
@@ -90,24 +84,5 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
   winesToAssociateToggleAccordion(): void {
     this.isWineToAssociateListItemOpened =
       !this.isWineToAssociateListItemOpened;
-  }
-  submitForm() {
-    this.isSubmitted = true;
-    if (!this.wineForm.valid) {
-      console.log('Il manque des valeurs !');
-      return false;
-    } else {
-      const wine = this.wineForm.get('wine').value;
-      const quantity = this.wineForm.get('quantity').value;
-      const maxPrice = this.wineForm.get('maxPrice').value;
-      const minRating = this.wineForm.get('minRating').value;
-
-      this.spoonacularService
-        .getWineRecommandation(wine, quantity, maxPrice, minRating)
-        .subscribe((data) => {
-          this.winesRecommandation = data;
-          console.log(this.winesRecommandation);
-        });
-    }
   }
 }

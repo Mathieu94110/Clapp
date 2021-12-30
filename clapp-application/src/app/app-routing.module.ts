@@ -34,12 +34,15 @@ const routes: Routes = [
       import('./pages/recipe-details/recipe-details.module').then(
         (m) => m.RecipeDetailsPageModule
       ),
-  },  {
+  },
+  {
     path: 'wines',
     loadChildren: () => import('./pages/wines/wines.module').then( m => m.WinesPageModule)
   },
-
-
+  {
+    path: 'carrousel',
+    loadChildren: () => import('./pages/carrousel/carrousel.module').then( m => m.CarrouselPageModule)
+  },
 ];
 
 @NgModule({
