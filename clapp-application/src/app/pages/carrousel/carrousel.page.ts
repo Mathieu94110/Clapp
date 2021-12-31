@@ -85,4 +85,8 @@ export class CarrouselPage implements OnInit {
     this.isWineToAssociateListItemOpened =
       !this.isWineToAssociateListItemOpened;
   }
+
+  round(number: number) {
+    return Math.round(number * 100) / 10;
+  }
 }

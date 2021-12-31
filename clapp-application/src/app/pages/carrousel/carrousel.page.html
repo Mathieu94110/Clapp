@@ -30,16 +30,13 @@
           />
         </div>
         <ion-card-header>
-          <ion-card-subtitle>{{ wine.score }} / 10</ion-card-subtitle>
+          <ion-card-subtitle
+            >{{ round(wine.score) }} / 10</ion-card-subtitle
+          >
           <ion-card-title>{{ wine.title }}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-          <ion-item
-            *ngIf="wine.description"
-            style="height: 100px; overflow-y: scroll"
-          >
-            {{ wine.description }}
-          </ion-item>
+          <p class="item-description">{{ wine.description }}</p>
 
           <ion-item
             href="{{ wine.link }}"

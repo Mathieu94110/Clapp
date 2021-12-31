@@ -40,5 +40,10 @@ ion-row{
 ion-text{
     height: 100px;
        --offset-top: 0 !important;
-    overflow: scroll;
+  
+}
+p.item-description{
+height: 100px; 
+overflow-y: scroll;
+margin-bottom:10px;
 }
