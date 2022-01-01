@@ -9,6 +9,8 @@ import { WinesPageRoutingModule } from './wines-routing.module';
 import { WinesPage } from './wines.page';
 import { MobileMenuComponent } from 'src/app/components/mobile-menu/mobile-menu.component';
 import { AccordionComponent } from '../../components/accordion/accordion.component';
+import { CarrouselComponent } from '../carrousel/carrousel.component';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
   imports: [
@@ -16,8 +18,14 @@ import { AccordionComponent } from '../../components/accordion/accordion.compone
     FormsModule,
     IonicModule,
     WinesPageRoutingModule,
+    SwiperModule,
     ReactiveFormsModule,
   ],
-  declarations: [WinesPage, MobileMenuComponent, AccordionComponent],
+  declarations: [
+    WinesPage,
+    MobileMenuComponent,
+    AccordionComponent,
+    CarrouselComponent,
+  ],
 })
 export class WinesPageModule {}

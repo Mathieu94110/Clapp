@@ -7,10 +7,11 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { SpoonacularApiService } from 'src/services/spoonacular-api.service';
 import { SwiperComponent } from 'swiper/angular';
-import SwiperCore, { SwiperOptions, Pagination, Virtual } from 'swiper';
+import SwiperCore, { Pagination, Virtual } from 'swiper';
+import { ProductMatch } from 'src/app/models/models';
+import { WineService } from 'src/services/wine.service';
 
 SwiperCore.use([Pagination, Virtual]);
 
@@ -28,23 +29,22 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
   description: string;
 
   wineForm: FormGroup;
+  wineDescriptionForm: FormGroup;
+  wineAssociateForm: FormGroup;
+
   isSubmitted = false;
   isRecommandationListItemOpened: boolean = false;
   isDescriptionListItemOpened: boolean = false;
   isWineToAssociateListItemOpened: boolean = false;
-  // winesRecommandation$: Observable<any[]>;
-  winesRecommandation: any[] = [];
+
+  winesRecommandation: ProductMatch[] = [];
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
 
-  // config: SwiperOptions = {
-  //   slidesPerView: 2,
-  //   spaceBetween: 50,
-  //   pagination: true,
-  // };
   touchAllowed: boolean = false;
   constructor(
     public formBuilder: FormBuilder,
-    private spoonacularService: SpoonacularApiService
+    private spoonacularService: SpoonacularApiService,
+    private wineServices: WineService
   ) {}
 
   ngOnInit() {
@@ -56,6 +56,16 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
       ],
       minRating: ['', [Validators.required, Validators.pattern(/[0-9]{0,1}/)]],
       maxPrice: [
+        '',
+        [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)],
+      ],
+    });
+    this.wineDescriptionForm = this.formBuilder.group({
+      wineDescription: ['', [Validators.required, Validators.minLength(2)]],
+    });
+    this.wineAssociateForm = this.formBuilder.group({
+      dish: ['', [Validators.required, Validators.minLength(2)]],
+      maxPricetoAssociate: [
         '',
         [Validators.required, Validators.pattern(/^-?(0|[1-9]\d*)?$/)],
       ],
@@ -105,8 +115,43 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
       this.spoonacularService
         .getWineRecommandation(wine, quantity, maxPrice, minRating)
         .subscribe((data) => {
-          this.winesRecommandation = data;
-          console.log(this.winesRecommandation);
+          console.log(data);
+          this.wineServices.setOption(data);
+        });
+    }
+  }
+  submitDescriptionForm() {
+    this.isSubmitted = true;
+    if (!this.wineForm.valid) {
+      console.log('Il manque des valeurs !');
+      return false;
+    } else {
+      const wineDescription = this.wineForm.get('wineDescription').value;
+
+      this.spoonacularService
+        .getWineDescription(wineDescription)
+        .subscribe((data) => {
+          console.log(data);
+          this.wineServices.setOption(data);
+        });
+    }
+  }
+  submitAssociateForm() {
+    this.isSubmitted = true;
+    if (!this.wineForm.valid) {
+      console.log('Il manque des valeurs !');
+      return false;
+    } else {
+      const dish = this.wineForm.get('dish').value;
+      const maxPricetoAssociate = this.wineForm.get(
+        'maxPricetoAssociate'
+      ).value;
+
+      this.spoonacularService
+        .getWinePairing(dish, maxPricetoAssociate)
+        .subscribe((data) => {
+          console.log(data);
+          this.wineServices.setOption(data);
         });
     }
   }

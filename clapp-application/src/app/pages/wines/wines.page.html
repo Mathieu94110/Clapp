@@ -1,6 +1,30 @@
 <app-mobile-menu></app-mobile-menu>
 
-<ion-content [fullscreen]="true">
-  <app-accordion
-  ></app-accordion>
+<ion-content
+  [fullscreen]="true"
+  style="width: 100%; height: 100%;"
+>
+  <ion-row
+    style="width: 100%; height: 100%"
+    class="ion-text-center ion-align-items-center ion-justify-content-center"
+  >
+    <ion-col
+      size-xs="12"
+      size-m="6"
+      size-l="6"
+      size-xl="6"
+      class="ion-text-center"
+    >
+      <app-accordion></app-accordion
+    ></ion-col>
+
+    <ion-col
+      size-xs="12"
+      size-m="6"
+      size-l="6"
+      size-xl="6"
+      class="ion-text-center ion-justify-content-center ion-align-items-center"
+      ><app-carrousel></app-carrousel
+    ></ion-col>
+  </ion-row>
 </ion-content>

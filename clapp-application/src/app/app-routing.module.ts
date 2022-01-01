@@ -39,10 +39,6 @@ const routes: Routes = [
     path: 'wines',
     loadChildren: () => import('./pages/wines/wines.module').then( m => m.WinesPageModule)
   },
-  {
-    path: 'carrousel',
-    loadChildren: () => import('./pages/carrousel/carrousel.module').then( m => m.CarrouselPageModule)
-  },
 ];
 
 @NgModule({

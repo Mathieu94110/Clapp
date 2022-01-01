@@ -1,63 +1,68 @@
 import {
-  Input,
   OnInit,
   Component,
-  AfterContentChecked,
   ViewChild,
   ViewEncapsulation,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { SpoonacularApiService } from 'src/services/spoonacular-api.service';
 import { SwiperComponent } from 'swiper/angular';
-import SwiperCore, { SwiperOptions, Pagination, Virtual } from 'swiper';
+import SwiperCore, {  Pagination, Virtual } from 'swiper';
 import { HttpClient } from '@angular/common/http';
+import { WineService } from 'src/services/wine.service';
+import { ProductMatch } from 'src/app/models/models';
 SwiperCore.use([Pagination, Virtual]);
 @Component({
   selector: 'app-carrousel',
-  templateUrl: './carrousel.page.html',
-  styleUrls: ['./carrousel.page.scss'],
+  templateUrl: './carrousel.component.html',
+  styleUrls: ['./carrousel.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CarrouselPage implements OnInit {
+export class CarrouselComponent implements OnInit {
   wineForm: FormGroup;
   isSubmitted = false;
   isRecommandationListItemOpened: boolean = false;
   isDescriptionListItemOpened: boolean = false;
   isWineToAssociateListItemOpened: boolean = false;
-  // winesRecommandation$: Observable<any[]>;
-  winesRecommandation: any;
+
+  winesRecommandation: ProductMatch[] = [];
+ 
+  isLoading: boolean = false;
+  subscription: Subscription;
+
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
 
-  // config: SwiperOptions = {
-  //   slidesPerView: 2,
-  //   spaceBetween: 50,
-  //   pagination: true,
-  // };
-  touchAllowed: boolean = false;
+  touchAllowed: boolean;
   constructor(
     public formBuilder: FormBuilder,
-    private spoonacularService: SpoonacularApiService,
-    private http: HttpClient
-  ) {}
+    private wineServices: WineService,
+    private cdr: ChangeDetectorRef
+  ) {
+    cdr.detach();
+    setInterval(() => {
+      this.cdr.detectChanges();
+    }, 2000);
+  }
 
   ngOnInit() {
-    // this.http.get('assets/data/basic-recipes.json').subscribe((data) => {
-    //   this.winesRecommandation = data;
-    //   console.log(this.winesRecommandation);
-    // });
+    this.getDatas();
+    this.subscription = this.wineServices._messageSource$.subscribe(() => {
+      this.getDatas();
+    });
+  }
 
-    const wine = 'merlot';
-    const quantity = 6;
-    const maxPrice = 100;
-    const minRating = 0;
-
-    this.spoonacularService
-      .getWineRecommandation(wine, quantity, maxPrice, minRating)
-      .subscribe((data) => {
-        this.winesRecommandation = data;
-        console.log(this.winesRecommandation);
-      });
+  getDatas() {
+    this.wineServices._messageSource$.subscribe((message) => {
+      console.log(message);
+      this.winesRecommandation = message;
+      this.cdr.detach();
+      this.cdr.detectChanges();
+      this.cdr.markForCheck();
+    });
   }
 
   ngAfterContentChecked() {
@@ -65,7 +70,10 @@ export class CarrouselPage implements OnInit {
       this.swiper.updateSwiper({});
     }
   }
+
   swiperSlideChanged(e) {
+    this.cdr.detach();
+    this.cdr.detectChanges();
     console.log('changed ', e);
   }
   next() {
