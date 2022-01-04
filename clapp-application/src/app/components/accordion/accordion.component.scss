@@ -74,7 +74,7 @@
   position: relative;
   background: white;
   padding: 10px;
-  margin: 10px 0px;
+  margin: 0px 0px 10px 0px;
 }
 
 .accordion-container.open {
@@ -98,7 +98,9 @@
     display: block;
     opacity: 1;
 }
-
+.content{
+  margin-top: 15px;
+}
 
 ion-item{
     --background:#fff
@@ -135,4 +137,17 @@ ion-item{
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+ .form-buttons{
+  height: 36px;
+  }
+
+@media screen and (max-width: 767px) {
+  .content-wrapper .accordion-container h1 {
+  font-size: 10px;
+    padding-right: 14px;
+  }
+ .form-buttons{
+  height: 24px;
+  }
 }

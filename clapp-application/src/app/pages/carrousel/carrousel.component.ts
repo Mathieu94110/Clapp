@@ -5,15 +5,17 @@ import {
   ViewEncapsulation,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
+  HostListener,
 } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { SpoonacularApiService } from 'src/services/spoonacular-api.service';
 import { SwiperComponent } from 'swiper/angular';
-import SwiperCore, {  Pagination, Virtual } from 'swiper';
+import SwiperCore, { Pagination, Virtual } from 'swiper';
 import { HttpClient } from '@angular/common/http';
 import { WineService } from 'src/services/wine.service';
 import { ProductMatch } from 'src/app/models/models';
+
 SwiperCore.use([Pagination, Virtual]);
 @Component({
   selector: 'app-carrousel',
@@ -29,14 +31,16 @@ export class CarrouselComponent implements OnInit {
   isDescriptionListItemOpened: boolean = false;
   isWineToAssociateListItemOpened: boolean = false;
 
-  winesRecommandation: ProductMatch[] = [];
- 
+  winesRecommandation: ProductMatch[];
+
   isLoading: boolean = false;
   subscription: Subscription;
 
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
 
   touchAllowed: boolean;
+  public getScreenWidth: number;
+  public getScreenHeight: number;
   constructor(
     public formBuilder: FormBuilder,
     private wineServices: WineService,
@@ -96,5 +100,16 @@ export class CarrouselComponent implements OnInit {
 
   round(number: number) {
     return Math.round(number * 100) / 10;
+  }
+
+  ngAfterContentInit() {
+    this.getScreenWidth = window.innerWidth;
+    this.getScreenHeight = window.innerHeight;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.getScreenWidth = window.innerWidth;
+    this.getScreenHeight = window.innerHeight;
   }
 }

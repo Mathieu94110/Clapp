@@ -5,6 +5,7 @@ import {
   AfterContentChecked,
   ViewChild,
   ViewEncapsulation,
+  HostListener,
 } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SpoonacularApiService } from 'src/services/spoonacular-api.service';
@@ -12,7 +13,9 @@ import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, { Pagination, Virtual } from 'swiper';
 import { ProductMatch } from 'src/app/models/models';
 import { WineService } from 'src/services/wine.service';
-
+import { Output, EventEmitter } from '@angular/core';
+ 
+  
 SwiperCore.use([Pagination, Virtual]);
 
 @Component({
@@ -28,6 +31,8 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
   @Input()
   description: string;
 
+  @Output() newItemEvent = new EventEmitter<boolean>();
+
   wineForm: FormGroup;
   wineDescriptionForm: FormGroup;
   wineAssociateForm: FormGroup;
@@ -41,6 +46,9 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
 
   touchAllowed: boolean = false;
+  public getScreenWidth: number;
+  public getScreenHeight: number;
+
   constructor(
     public formBuilder: FormBuilder,
     private spoonacularService: SpoonacularApiService,
@@ -118,6 +126,9 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
           console.log(data);
           this.wineServices.setOption(data);
         });
+      this.isRecommandationListItemOpened =
+        !this.isRecommandationListItemOpened;
+     this.addNewItem(this.isRecommandationListItemOpened);
     }
   }
   submitDescriptionForm() {
@@ -154,5 +165,18 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
           this.wineServices.setOption(data);
         });
     }
+  }
+  ngAfterContentInit() {
+    this.getScreenWidth = window.innerWidth;
+    this.getScreenHeight = window.innerHeight;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.getScreenWidth = window.innerWidth;
+    this.getScreenHeight = window.innerHeight;
+  }
+  addNewItem(value: boolean) {
+    this.newItemEvent.emit(value);
   }
 }
