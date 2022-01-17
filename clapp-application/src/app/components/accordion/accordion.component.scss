@@ -14,7 +14,6 @@
 .accordion-container .arrow {
   position: absolute;
   top: 50%;
-  right: 5%;
   
 }
 
@@ -73,8 +72,8 @@
   cursor: pointer;
   position: relative;
   background: white;
-  padding: 10px;
-  margin: 0px 0px 10px 0px;
+  padding: 0px 10px;
+ 
 }
 
 .accordion-container.open {
@@ -91,15 +90,12 @@
 
 .accordion-container .content {
   opacity: 0;
-  display: none;
+ 
 }
 
 .accordion-container.open .content {
     display: block;
     opacity: 1;
-}
-.content{
-  margin-top: 15px;
 }
 
 ion-item{
@@ -150,4 +146,5 @@ ion-item{
  .form-buttons{
   height: 24px;
   }
+
 }

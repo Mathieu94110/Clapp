@@ -10,6 +10,9 @@ export class WinesPage {
   public getScreenWidth: number;
   public getScreenHeight: number;
   isRecommandationListItemOpened: boolean = false;
+
+  winesRecomandations: any = [];
+
   constructor() {
     fetch('assets/data/fake-wines-items.json')
       .then((response) => response.json())
@@ -29,7 +32,7 @@ export class WinesPage {
     this.getScreenHeight = window.innerHeight;
   }
 
-  addItem(value: boolean) {
-    this.isRecommandationListItemOpened = value
+  addItem(value: any) {
+    this.winesRecomandations = value;
   }
 }

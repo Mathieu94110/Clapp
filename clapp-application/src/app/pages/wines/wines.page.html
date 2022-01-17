@@ -3,27 +3,11 @@
 <ion-content
   [ngClass]="getScreenWidth >= 767 ? 'desktop-wine-container' : 'mobile-wine-title'"
 >
-  <ion-row
-    style="width: 100%; height: 100%"
-    class="ion-text-center ion-align-items-center ion-justify-content-center"
-  >
-    <ion-col
-      size-xs="12"
-      size-m="6"
-      size-l="6"
-      size-xl="6"
-      class="ion-text-center"
-    >
-      <app-accordion></app-accordion
-    ></ion-col>
+  <app-accordion></app-accordion>
 
-    <ion-col
-      size-xs="12"
-      size-m="6"
-      size-l="6"
-      size-xl="6"
-      [ngClass]="isRecommandationListItemOpened ? 'carrousel-container' : 'mobile-carrousel-container'"
-      ><app-carrousel (newItemEvent)="addItem($event)"></app-carrousel
-    ></ion-col>
-  </ion-row>
+  <div
+    [ngClass]="isRecommandationListItemOpened ? 'carrousel-container' : 'mobile-carrousel-container'"
+  >
+    <app-carrousel (newItemEvent)="addItem($event)"></app-carrousel>
+  </div>
 </ion-content>

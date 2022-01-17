@@ -1,131 +1,215 @@
-<ion-content      [ngClass]="getScreenWidth >= 767 ? 'ion-padding' : 'ion-no-padding'">
-  <div class="content-wrapper">
-    <div style="width: 400px">
-      <div
-        class="accordion-container"
-        [ngClass]="isRecommandationListItemOpened ? 'open' : ''"
+<ion-content
+  class="ion-no-padding"
+  [ngStyle]="{ height: isRecommandationListItemOpened ? '100%' : '60px' }"
+>
+  <div class="content-wrapper" style="overflow-y: hidden">
+    <div
+      style="
+        width: calc(100% / 3);
+        display: flex;
+        justify-content: center;
+        position: relative;
+        height: 60px;
+      "
+      class="accordion-container"
+      [ngClass]="isRecommandationListItemOpened ? 'open' : ''"
+    >
+      <h1
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 100%;
+          text-align: center;
+        "
       >
-        <h1>
-          Recommandations
-          <div
-            class="arrow"
-            (click)="wineRecommandationToggleAccordion()"
-          ></div>
-        </h1>
-        <form
-          class="content"
-          [formGroup]="wineForm"
-          (ngSubmit)="submitForm()"
-          novalidate
-        >
-          <ion-item lines="full">
-            <ion-label position="floating">Vin</ion-label>
-            <ion-input formControlName="wine" type="text" required></ion-input>
-          </ion-item>
-
-          <ion-item lines="full">
-            <ion-label position="floating">Quantité</ion-label>
-            <ion-input
-              formControlName="quantity"
-              type="text"
-              required
-            ></ion-input>
-          </ion-item>
-
-          <ion-item lines="full">
-            <ion-label position="floating">Note minimale</ion-label>
-            <ion-input
-              formControlName="minRating"
-              type="text"
-              required
-            ></ion-input>
-          </ion-item>
-
-          <ion-item lines="full">
-            <ion-label position="floating">Prix maximum</ion-label>
-            <ion-input
-              formControlName="maxPrice"
-              type="text"
-              required
-            ></ion-input>
-          </ion-item>
-          <ion-row>
-            <ion-col>
-              <ion-button class="form-buttons" type="submit" color="danger" expand="block"
-                >Submit</ion-button
-              >
-            </ion-col>
-          </ion-row>
-        </form>
-      </div>
-    </div>
-    <div style="width: 400px">
-      <div
-        class="accordion-container"
-        [ngClass]="isDescriptionListItemOpened ? 'open' : ''"
+        Recommandations
+        <div
+          class="arrow"
+          (click)="wineRecommandationToggleAccordion()"
+          style="position: absolute; right: 20px"
+        ></div>
+      </h1>
+      <form
+        class="content"
+        [formGroup]="wineForm"
+        (ngSubmit)="submitForm()"
+        style="position: absolute; width: 100%; top: 60px; height: auto"
+        novalidate
       >
-        <h1>
-          Description
-          <div class="arrow" (click)="wineDescriptionToggleAccordion()"></div>
-        </h1>
+        <ion-item lines="full">
+          <ion-label position="floating" style="padding-left: 10px"
+            >Vin</ion-label
+          >
+          <ion-input formControlName="wine" type="text" required></ion-input>
+        </ion-item>
 
-        <form
-          class="content"
-          [formGroup]="wineDescriptionForm"
-          (ngSubmit)="submitDescriptionForm()"
-          novalidate
-        >
-          <ion-item lines="full">
-            <ion-label position="floating">Vin</ion-label>
-            <ion-input
-              formControlName="wineDescription"
-              type="text"
-              required
-            ></ion-input>
-          </ion-item>
+        <ion-item lines="full">
+          <ion-label position="floating" style="padding-left: 10px"
+            >Quantité</ion-label
+          >
+          <ion-input
+            formControlName="quantity"
+            type="text"
+            required
+          ></ion-input>
+        </ion-item>
 
-          <ion-row>
-            <ion-col>
-              <ion-button class="form-buttons" type="submit" color="danger" expand="block"
-                >Submit</ion-button
-              >
-            </ion-col>
-          </ion-row>
-        </form>
-      </div>
-    </div>
-    <div style="width: 400px">
-      <div
-        class="accordion-container"
-        (click)="wineAssociateToggleAccordion()"
-        [ngClass]="isWineToAssociateListItemOpened ? 'open' : ''"
-      >
-        <h1>
-          Association
-          <div class="arrow" (click)="winesToAssociateToggleAccordion()"></div>
-        </h1>
+        <ion-item lines="full">
+          <ion-label position="floating" style="padding-left: 10px"
+            >Note minimale</ion-label
+          >
+          <ion-input
+            formControlName="minRating"
+            type="text"
+            required
+          ></ion-input>
+        </ion-item>
 
-        <form
-          class="content"
-          [formGroup]="wineAssociateForm"
-          (ngSubmit)="submitAssociateForm()"
-          novalidate
-        >
-          <ion-item lines="full">
-            <ion-label position="floating">Plat</ion-label>
-            <ion-input type="text" required></ion-input>
-          </ion-item>
-          <ion-item lines="full">
-            <ion-label position="floating">Prix maximum</ion-label>
-            <ion-input type="text" required></ion-input>
-          </ion-item>
-          <ion-col>
-            <ion-button class="form-buttons" type="submit" color="danger" expand="block"
+        <ion-item lines="full">
+          <ion-label position="floating" style="padding-left: 10px"
+            >Prix maximum</ion-label
+          >
+          <ion-input
+            formControlName="maxPrice"
+            type="text"
+            required
+          ></ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-col style="background-color: white">
+            <ion-button
+              class="form-buttons"
+              type="submit"
+              color="danger"
+              expand="block"
               >Submit</ion-button
             >
           </ion-col>
-        </form>
-      </div>
+        </ion-row>
+      </form>
+    </div>
+
+    <div
+      style="
+        width: calc(100% / 3);
+        display: flex;
+        justify-content: center;
+        position: relative;
+        height: 60px;
+      "
+      class="accordion-container"
+      [ngClass]="isDescriptionListItemOpened ? 'open' : ''"
+    >
+      <h1
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 100%;
+          text-align: center;
+        "
+      >
+        Description
+        <div
+          class="arrow"
+          (click)="wineDescriptionToggleAccordion()"
+          style="position: absolute; right: 20px"
+        ></div>
+      </h1>
+
+      <form
+        class="content"
+        [formGroup]="wineDescriptionForm"
+        (ngSubmit)="submitDescriptionForm()"
+        style="position: absolute; width: 100%; top: 60px; height: auto"
+        novalidate
+      >
+        <ion-item lines="full">
+          <ion-label position="floating" style="padding-left: 10px"
+            >Vin</ion-label
+          >
+          <ion-input
+            formControlName="wineDescription"
+            type="text"
+            required
+          ></ion-input>
+        </ion-item>
+
+        <ion-row>
+          <ion-col style="background-color: white">
+            <ion-button
+              class="form-buttons"
+              type="submit"
+              color="danger"
+              expand="block"
+              >Submit</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </form>
+    </div>
+
+    <div
+      style="
+        width: calc(100% / 3);
+        display: flex;
+        justify-content: center;
+        position: relative;
+        height: 60px;
+      "
+      class="accordion-container"
+      (click)="wineAssociateToggleAccordion()"
+      [ngClass]="isWineToAssociateListItemOpened ? 'open' : ''"
+    >
+      <h1
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 100%;
+          text-align: center;
+        "
+      >
+        Association
+        <div
+          class="arrow"
+          (click)="winesToAssociateToggleAccordion()"
+          style="position: absolute; right: 20px"
+        ></div>
+      </h1>
+
+      <form
+        class="content"
+        [formGroup]="wineAssociateForm"
+        (ngSubmit)="submitAssociateForm()"
+        style="position: absolute; width: 100%; top: 60px; height: auto"
+        novalidate
+      >
+        <ion-item lines="full">
+          <ion-label position="floating" style="padding-left: 10px"
+            >Plat</ion-label
+          >
+          <ion-input type="text" required></ion-input>
+        </ion-item>
+        <ion-item lines="full">
+          <ion-label position="floating" style="padding-left: 10px"
+            >Prix maximum</ion-label
+          >
+          <ion-input type="text" required></ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-col style="background-color: white">
+            <ion-button
+              class="form-buttons"
+              type="submit"
+              color="danger"
+              expand="block"
+              >Submit</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </form>
     </div>
   </div>
 </ion-content>

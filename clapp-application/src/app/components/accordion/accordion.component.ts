@@ -17,6 +17,7 @@ import { Output, EventEmitter } from '@angular/core';
  
   
 SwiperCore.use([Pagination, Virtual]);
+const blocLinks: any = document.querySelectorAll('.arrow');
 
 @Component({
   selector: 'app-accordion',
@@ -43,6 +44,7 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
   isWineToAssociateListItemOpened: boolean = false;
 
   winesRecommandation: ProductMatch[] = [];
+
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
 
   touchAllowed: boolean = false;
@@ -99,6 +101,15 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
     this.swiper.swiperRef.allowTouchMove = this.touchAllowed;
   }
 
+  // wineRecommandationToggleAccordion(): void {
+  //   this.isRecommandationListItemOpened = !this.isRecommandationListItemOpened;
+  //   if (this.isRecommandationListItemOpened) {
+  //     blocLinks.style.height = `300px`;
+  //     return;
+  //   }
+  //   blocLinks.style.height = "0px";
+  // }
+
   wineRecommandationToggleAccordion(): void {
     this.isRecommandationListItemOpened = !this.isRecommandationListItemOpened;
   }
@@ -128,33 +139,35 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
         });
       this.isRecommandationListItemOpened =
         !this.isRecommandationListItemOpened;
-     this.addNewItem(this.isRecommandationListItemOpened);
+      this.addNewItem(this.isRecommandationListItemOpened);
     }
   }
   submitDescriptionForm() {
     this.isSubmitted = true;
-    if (!this.wineForm.valid) {
+    if (!this.wineDescriptionForm.valid) {
       console.log('Il manque des valeurs !');
       return false;
     } else {
-      const wineDescription = this.wineForm.get('wineDescription').value;
+      const wineDescription =
+        this.wineDescriptionForm.get('wineDescription').value;
 
       this.spoonacularService
         .getWineDescription(wineDescription)
         .subscribe((data) => {
           console.log(data);
           this.wineServices.setOption(data);
+          
         });
     }
   }
   submitAssociateForm() {
     this.isSubmitted = true;
-    if (!this.wineForm.valid) {
+    if (!this.wineAssociateForm.valid) {
       console.log('Il manque des valeurs !');
       return false;
     } else {
-      const dish = this.wineForm.get('dish').value;
-      const maxPricetoAssociate = this.wineForm.get(
+      const dish = this.wineAssociateForm.get('dish').value;
+      const maxPricetoAssociate = this.wineAssociateForm.get(
         'maxPricetoAssociate'
       ).value;
 
@@ -178,5 +191,20 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
   }
   addNewItem(value: boolean) {
     this.newItemEvent.emit(value);
+  }
+
+  //
+  shownList = null;
+
+  toggleList(list) {
+    if (this.isListExpanded(list)) {
+      this.shownList = null;
+    } else {
+      this.shownList = list;
+    }
+  }
+
+  isListExpanded(list) {
+    return this.shownList === list;
   }
 }
