@@ -1,13 +1,21 @@
 <app-mobile-menu></app-mobile-menu>
 
-<ion-content
-  [ngClass]="getScreenWidth >= 767 ? 'desktop-wine-container' : 'mobile-wine-title'"
->
+<ion-content class="wine-container">
   <app-accordion></app-accordion>
 
   <div
-    [ngClass]="isRecommandationListItemOpened ? 'carrousel-container' : 'mobile-carrousel-container'"
+    [ngClass]=" getScreenWidth >= 767 ? 'carrousel-container' :'mobile-carrousel-container' "
+    *ngIf="carouselDatas"
   >
-    <app-carrousel (newItemEvent)="addItem($event)"></app-carrousel>
+    <app-carrousel
+      (formReseted)="showHideRecommandation($event)"
+    ></app-carrousel>
+  </div>
+
+  <div
+    class="carrousel-container ion-padding ion-text-center"
+    *ngIf="descriptionDatas"
+  >
+    <p>Description: <span>{{ descriptionDatas.wineDescription }}</span></p>
   </div>
 </ion-content>

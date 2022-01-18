@@ -1,4 +1,6 @@
 import { Component, HostListener } from '@angular/core';
+import { Observable } from 'rxjs';
+import { WineService } from 'src/services/wine.service';
 
 @Component({
   selector: 'app-wines',
@@ -10,15 +12,18 @@ export class WinesPage {
   public getScreenWidth: number;
   public getScreenHeight: number;
   isRecommandationListItemOpened: boolean = false;
+  carouselDatas: any = [];
+  descriptionDatas: { wineDescription: string | null };
 
-  winesRecomandations: any = [];
-
-  constructor() {
-    fetch('assets/data/fake-wines-items.json')
-      .then((response) => response.json())
-      .then((data) => {
-        this.winesCategories = data;
-      });
+  accordionItemClicked: boolean;
+  astring$: Observable<string>;
+  constructor(private wineService: WineService) {
+    this.wineService.getOption().subscribe((data) => {
+      this.carouselDatas = data;
+    });
+    this.wineService.getWineDescription().subscribe((data) => {
+      this.descriptionDatas = data;
+    });
   }
 
   ngAfterContentInit() {
@@ -32,7 +37,13 @@ export class WinesPage {
     this.getScreenHeight = window.innerHeight;
   }
 
-  addItem(value: any) {
-    this.winesRecomandations = value;
+  showHideRecommandation(value: any) {
+    this.accordionItemClicked = value;
+  }
+  showHideDescription(value: any) {
+    this.accordionItemClicked = value;
+  }
+  showHideAssociation(value: any) {
+    this.accordionItemClicked = value;
   }
 }

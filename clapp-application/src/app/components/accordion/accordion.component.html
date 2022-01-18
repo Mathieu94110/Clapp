@@ -1,6 +1,13 @@
 <ion-content
   class="ion-no-padding"
-  [ngStyle]="{ height: isRecommandationListItemOpened ? '100%' : '60px' }"
+  [ngStyle]="{
+    height:
+      isRecommandationListItemOpened ||
+      isDescriptionListItemOpened ||
+      isWineToAssociateListItemOpened
+        ? '100%'
+        : '60px'
+  }"
 >
   <div class="content-wrapper" style="overflow-y: hidden">
     <div
@@ -26,14 +33,14 @@
         Recommandations
         <div
           class="arrow"
-          (click)="wineRecommandationToggleAccordion()"
+          (click)="formRecommandationClicked()"
           style="position: absolute; right: 20px"
         ></div>
       </h1>
       <form
         class="content"
-        [formGroup]="wineForm"
-        (ngSubmit)="submitForm()"
+        [formGroup]="wineRecommandationForm"
+        (ngSubmit)="submitRecommandationForm()"
         style="position: absolute; width: 100%; top: 60px; height: auto"
         novalidate
       >
@@ -113,7 +120,7 @@
         Description
         <div
           class="arrow"
-          (click)="wineDescriptionToggleAccordion()"
+          (click)="formDescriptionClicked()"
           style="position: absolute; right: 20px"
         ></div>
       </h1>
@@ -159,7 +166,7 @@
         height: 60px;
       "
       class="accordion-container"
-      (click)="wineAssociateToggleAccordion()"
+      (click)="formAssociationClicked()"
       [ngClass]="isWineToAssociateListItemOpened ? 'open' : ''"
     >
       <h1

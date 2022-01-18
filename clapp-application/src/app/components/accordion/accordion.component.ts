@@ -14,7 +14,7 @@ import SwiperCore, { Pagination, Virtual } from 'swiper';
 import { ProductMatch } from 'src/app/models/models';
 import { WineService } from 'src/services/wine.service';
 import { Output, EventEmitter } from '@angular/core';
- 
+
   
 SwiperCore.use([Pagination, Virtual]);
 const blocLinks: any = document.querySelectorAll('.arrow');
@@ -32,9 +32,9 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
   @Input()
   description: string;
 
-  @Output() newItemEvent = new EventEmitter<boolean>();
+  @Output() formReseted = new EventEmitter<boolean>();
 
-  wineForm: FormGroup;
+  wineRecommandationForm: FormGroup;
   wineDescriptionForm: FormGroup;
   wineAssociateForm: FormGroup;
 
@@ -58,7 +58,7 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
   ) {}
 
   ngOnInit() {
-    this.wineForm = this.formBuilder.group({
+    this.wineRecommandationForm = this.formBuilder.group({
       wine: ['', [Validators.required, Validators.minLength(2)]],
       quantity: [
         '',
@@ -109,27 +109,42 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
   //   }
   //   blocLinks.style.height = "0px";
   // }
-
-  wineRecommandationToggleAccordion(): void {
+  formRecommandationClicked() {
     this.isRecommandationListItemOpened = !this.isRecommandationListItemOpened;
+    this.isWineToAssociateListItemOpened = false;
+    this.isDescriptionListItemOpened = false;
+    this.formReseted.emit(this.isRecommandationListItemOpened);
   }
-  wineDescriptionToggleAccordion(): void {
+  formDescriptionClicked() {
     this.isDescriptionListItemOpened = !this.isDescriptionListItemOpened;
+    this.isRecommandationListItemOpened = false;
+    this.isWineToAssociateListItemOpened = false;
+    this.formReseted.emit(this.isDescriptionListItemOpened);
   }
-  winesToAssociateToggleAccordion(): void {
+
+  formAssociationClicked() {
     this.isWineToAssociateListItemOpened =
       !this.isWineToAssociateListItemOpened;
+    this.isRecommandationListItemOpened = false;
+    this.isDescriptionListItemOpened = false;
+    this.formReseted.emit(this.isWineToAssociateListItemOpened);
   }
-  submitForm() {
+
+  // wineRecommandationToggleAccordion(): void {
+  //   this.isRecommandationListItemOpened = !this.isRecommandationListItemOpened;
+  // }
+ 
+
+  submitRecommandationForm() {
     this.isSubmitted = true;
-    if (!this.wineForm.valid) {
+    if (!this.wineRecommandationForm.valid) {
       console.log('Il manque des valeurs !');
       return false;
     } else {
-      const wine = this.wineForm.get('wine').value;
-      const quantity = this.wineForm.get('quantity').value;
-      const maxPrice = this.wineForm.get('maxPrice').value;
-      const minRating = this.wineForm.get('minRating').value;
+      const wine = this.wineRecommandationForm.get('wine').value;
+      const quantity = this.wineRecommandationForm.get('quantity').value;
+      const maxPrice = this.wineRecommandationForm.get('maxPrice').value;
+      const minRating = this.wineRecommandationForm.get('minRating').value;
 
       this.spoonacularService
         .getWineRecommandation(wine, quantity, maxPrice, minRating)
@@ -155,9 +170,10 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
         .getWineDescription(wineDescription)
         .subscribe((data) => {
           console.log(data);
-          this.wineServices.setOption(data);
-          
+          this.wineServices.setWineDescription(data);
         });
+          this.isDescriptionListItemOpened =
+            !this.isDescriptionListItemOpened;
     }
   }
   submitAssociateForm() {
@@ -177,6 +193,7 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
           console.log(data);
           this.wineServices.setOption(data);
         });
+         this.isWineToAssociateListItemOpened = !this.isWineToAssociateListItemOpened;
     }
   }
   ngAfterContentInit() {
@@ -189,11 +206,11 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
     this.getScreenWidth = window.innerWidth;
     this.getScreenHeight = window.innerHeight;
   }
+
   addNewItem(value: boolean) {
-    this.newItemEvent.emit(value);
+    this.formReseted.emit(value);
   }
 
-  //
   shownList = null;
 
   toggleList(list) {

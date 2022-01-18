@@ -43,7 +43,7 @@ ion-text{
   
 }
 p.item-description{
-height: 100px; 
+height: 80px; 
 overflow-y: scroll;
 margin-bottom:10px;
 }
@@ -57,10 +57,5 @@ margin-bottom:10px;
     
 }
 .mobile-accordion-list{
-   
       height: 600px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    
 }

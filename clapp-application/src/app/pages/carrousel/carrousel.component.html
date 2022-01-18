@@ -1,4 +1,4 @@
-<ion-content class="ion-padding" style="height: 500px">
+<ion-content [ngClass]="getScreenWidth >= 767 ? 'ion-padding' : 'ion-no-padding'">
   <div
     *ngIf="winesRecommandation"
     [ngClass]="
@@ -26,7 +26,7 @@
             <img
               [src]="wine.imageUrl"
               class="ion-margin-auto"
-              style="height: 150px"
+              style="height: 140px; width: auto; margin: auto"
             />
           </div>
           <ion-card-header>
