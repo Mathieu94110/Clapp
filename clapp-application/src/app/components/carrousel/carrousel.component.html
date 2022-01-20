@@ -1,6 +1,6 @@
 <ion-content [ngClass]="getScreenWidth >= 767 ? 'ion-padding' : 'ion-no-padding'">
   <div
-    *ngIf="winesRecommandation"
+    *ngIf="recommandation"
     [ngClass]="
       getScreenWidth >= 767 ? 'desktop-accordion-list' : 'mobile-accordion-list'
     "
@@ -17,7 +17,7 @@
     >
       <ng-template
         swiperSlide
-        *ngFor="let wine of winesRecommandation.recommendedWines"
+        *ngFor="let wine of recommandation.recommendedWines"
       >
         <ion-card style="width: 300px" class="ion-text-center">
           <div

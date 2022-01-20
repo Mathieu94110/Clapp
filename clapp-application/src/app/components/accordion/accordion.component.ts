@@ -11,13 +11,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SpoonacularApiService } from 'src/services/spoonacular-api.service';
 import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, { Pagination, Virtual } from 'swiper';
-import { ProductMatch } from 'src/app/models/models';
-import { WineService } from 'src/services/wine.service';
 import { Output, EventEmitter } from '@angular/core';
 
-  
 SwiperCore.use([Pagination, Virtual]);
-const blocLinks: any = document.querySelectorAll('.arrow');
 
 @Component({
   selector: 'app-accordion',
@@ -26,24 +22,23 @@ const blocLinks: any = document.querySelectorAll('.arrow');
   encapsulation: ViewEncapsulation.None,
 })
 export class AccordionComponent implements OnInit, AfterContentChecked {
-  @Input()
-  name: string;
-
-  @Input()
-  description: string;
-
-  @Output() formReseted = new EventEmitter<boolean>();
+  @Output() recommandationData = new EventEmitter<any>();
+  @Output() descriptionData = new EventEmitter<any>();
+  @Output() associationData = new EventEmitter<any>();
 
   wineRecommandationForm: FormGroup;
   wineDescriptionForm: FormGroup;
   wineAssociateForm: FormGroup;
 
   isSubmitted = false;
-  isRecommandationListItemOpened: boolean = false;
-  isDescriptionListItemOpened: boolean = false;
-  isWineToAssociateListItemOpened: boolean = false;
 
-  winesRecommandation: ProductMatch[] = [];
+  // list opened
+  isDescriptionListItemOpened: boolean = false;
+  isAssociationListItemOpened: boolean = false;
+  isRecommandationListItemOpened: boolean = false;
+
+  currentDescription: { wineDescription: string };
+  winesAssociation: any;
 
   @ViewChild('swiper', { static: false }) swiper?: SwiperComponent;
 
@@ -53,8 +48,7 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
 
   constructor(
     public formBuilder: FormBuilder,
-    private spoonacularService: SpoonacularApiService,
-    private wineServices: WineService
+    private spoonacularService: SpoonacularApiService
   ) {}
 
   ngOnInit() {
@@ -101,39 +95,16 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
     this.swiper.swiperRef.allowTouchMove = this.touchAllowed;
   }
 
-  // wineRecommandationToggleAccordion(): void {
-  //   this.isRecommandationListItemOpened = !this.isRecommandationListItemOpened;
-  //   if (this.isRecommandationListItemOpened) {
-  //     blocLinks.style.height = `300px`;
-  //     return;
-  //   }
-  //   blocLinks.style.height = "0px";
-  // }
   formRecommandationClicked() {
     this.isRecommandationListItemOpened = !this.isRecommandationListItemOpened;
-    this.isWineToAssociateListItemOpened = false;
-    this.isDescriptionListItemOpened = false;
-    this.formReseted.emit(this.isRecommandationListItemOpened);
   }
   formDescriptionClicked() {
     this.isDescriptionListItemOpened = !this.isDescriptionListItemOpened;
-    this.isRecommandationListItemOpened = false;
-    this.isWineToAssociateListItemOpened = false;
-    this.formReseted.emit(this.isDescriptionListItemOpened);
   }
 
   formAssociationClicked() {
-    this.isWineToAssociateListItemOpened =
-      !this.isWineToAssociateListItemOpened;
-    this.isRecommandationListItemOpened = false;
-    this.isDescriptionListItemOpened = false;
-    this.formReseted.emit(this.isWineToAssociateListItemOpened);
+    this.isAssociationListItemOpened = !this.isAssociationListItemOpened;
   }
-
-  // wineRecommandationToggleAccordion(): void {
-  //   this.isRecommandationListItemOpened = !this.isRecommandationListItemOpened;
-  // }
- 
 
   submitRecommandationForm() {
     this.isSubmitted = true;
@@ -150,13 +121,13 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
         .getWineRecommandation(wine, quantity, maxPrice, minRating)
         .subscribe((data) => {
           console.log(data);
-          this.wineServices.setOption(data);
+          this.recommandationData.emit(data);
         });
       this.isRecommandationListItemOpened =
         !this.isRecommandationListItemOpened;
-      this.addNewItem(this.isRecommandationListItemOpened);
     }
   }
+
   submitDescriptionForm() {
     this.isSubmitted = true;
     if (!this.wineDescriptionForm.valid) {
@@ -165,17 +136,16 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
     } else {
       const wineDescription =
         this.wineDescriptionForm.get('wineDescription').value;
-
       this.spoonacularService
         .getWineDescription(wineDescription)
-        .subscribe((data) => {
-          console.log(data);
-          this.wineServices.setWineDescription(data);
+        .subscribe((data: any) => {
+          this.descriptionData.emit(data);
         });
-          this.isDescriptionListItemOpened =
-            !this.isDescriptionListItemOpened;
+
+      this.isDescriptionListItemOpened = !this.isDescriptionListItemOpened;
     }
   }
+
   submitAssociateForm() {
     this.isSubmitted = true;
     if (!this.wineAssociateForm.valid) {
@@ -190,12 +160,12 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
       this.spoonacularService
         .getWinePairing(dish, maxPricetoAssociate)
         .subscribe((data) => {
-          console.log(data);
-          this.wineServices.setOption(data);
+          this.associationData.emit(data);
         });
-         this.isWineToAssociateListItemOpened = !this.isWineToAssociateListItemOpened;
+      this.isAssociationListItemOpened = !this.isAssociationListItemOpened;
     }
   }
+
   ngAfterContentInit() {
     this.getScreenWidth = window.innerWidth;
     this.getScreenHeight = window.innerHeight;
@@ -205,10 +175,6 @@ export class AccordionComponent implements OnInit, AfterContentChecked {
   onWindowResize() {
     this.getScreenWidth = window.innerWidth;
     this.getScreenHeight = window.innerHeight;
-  }
-
-  addNewItem(value: boolean) {
-    this.formReseted.emit(value);
   }
 
   shownList = null;

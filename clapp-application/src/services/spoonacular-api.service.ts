@@ -4,14 +4,13 @@ import { Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { RecipeInfo } from '../app/models/models';
 import { catchError } from 'rxjs/operators';
-import { WineService } from './wine.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SpoonacularApiService {
   url: string = 'https://api.spoonacular.com/recipes';
-  constructor(private http: HttpClient, private wineService: WineService) {}
+  constructor(private http: HttpClient) {}
 
   search(terms: Observable<string>) {
     console.log(terms);

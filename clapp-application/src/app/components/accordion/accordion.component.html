@@ -4,7 +4,7 @@
     height:
       isRecommandationListItemOpened ||
       isDescriptionListItemOpened ||
-      isWineToAssociateListItemOpened
+      isAssociationListItemOpened
         ? '100%'
         : '60px'
   }"
@@ -166,8 +166,7 @@
         height: 60px;
       "
       class="accordion-container"
-      (click)="formAssociationClicked()"
-      [ngClass]="isWineToAssociateListItemOpened ? 'open' : ''"
+      [ngClass]="isAssociationListItemOpened ? 'open' : ''"
     >
       <h1
         style="
@@ -181,7 +180,7 @@
         Association
         <div
           class="arrow"
-          (click)="winesToAssociateToggleAccordion()"
+          (click)="formAssociationClicked()"
           style="position: absolute; right: 20px"
         ></div>
       </h1>
@@ -197,13 +196,17 @@
           <ion-label position="floating" style="padding-left: 10px"
             >Plat</ion-label
           >
-          <ion-input type="text" required></ion-input>
+          <ion-input type="text" formControlName="dish" required></ion-input>
         </ion-item>
         <ion-item lines="full">
           <ion-label position="floating" style="padding-left: 10px"
             >Prix maximum</ion-label
           >
-          <ion-input type="text" required></ion-input>
+          <ion-input
+            type="text"
+            formControlName="maxPricetoAssociate"
+            required
+          ></ion-input>
         </ion-item>
         <ion-row>
           <ion-col style="background-color: white">

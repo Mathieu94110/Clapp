@@ -6,14 +6,12 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy,
   HostListener,
+  Input,
 } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { SpoonacularApiService } from 'src/services/spoonacular-api.service';
 import { SwiperComponent } from 'swiper/angular';
 import SwiperCore, { Pagination, Virtual } from 'swiper';
-import { HttpClient } from '@angular/common/http';
-import { WineService } from 'src/services/wine.service';
 import { ProductMatch } from 'src/app/models/models';
 
 SwiperCore.use([Pagination, Virtual]);
@@ -25,6 +23,8 @@ SwiperCore.use([Pagination, Virtual]);
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CarrouselComponent implements OnInit {
+  @Input() recommandation: string;
+
   wineForm: FormGroup;
   isSubmitted = false;
   isRecommandationListItemOpened: boolean = false;
@@ -41,11 +41,7 @@ export class CarrouselComponent implements OnInit {
   touchAllowed: boolean;
   public getScreenWidth: number;
   public getScreenHeight: number;
-  constructor(
-    public formBuilder: FormBuilder,
-    private wineServices: WineService,
-    private cdr: ChangeDetectorRef
-  ) {
+  constructor(public formBuilder: FormBuilder, private cdr: ChangeDetectorRef) {
     cdr.detach();
     setInterval(() => {
       this.cdr.detectChanges();
@@ -53,22 +49,10 @@ export class CarrouselComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getDatas();
-    this.subscription = this.wineServices._messageSource$.subscribe(() => {
-      this.getDatas();
-    });
+    this.cdr.detach();
+    this.cdr.detectChanges();
+    this.cdr.markForCheck();
   }
-
-  getDatas() {
-    this.wineServices._messageSource$.subscribe((message) => {
-      console.log(message);
-      this.winesRecommandation = message;
-      this.cdr.detach();
-      this.cdr.detectChanges();
-      this.cdr.markForCheck();
-    });
-  }
-
   ngAfterContentChecked() {
     if (this.swiper) {
       this.swiper.updateSwiper({});
@@ -93,7 +77,7 @@ export class CarrouselComponent implements OnInit {
   wineDescriptionToggleAccordion(): void {
     this.isDescriptionListItemOpened = !this.isDescriptionListItemOpened;
   }
-  winesToAssociateToggleAccordion(): void {
+  formAssociationClicked(): void {
     this.isWineToAssociateListItemOpened =
       !this.isWineToAssociateListItemOpened;
   }

@@ -1,0 +1,56 @@
+<ion-content>
+  <div *ngIf="association">
+    <ion-card
+      style="width: 80%; margin: 50px auto 0px auto"
+      class="ion-text-center"
+    >
+      <div
+        class="ion-justify-content-center ion-text-center ion-align-items-center"
+      >
+        <img
+          [src]="association.productMatches.imageUrl"
+          class="ion-margin-auto"
+          style="height: 140px; width: auto; margin: auto"
+        />
+      </div>
+      <ion-card-header>
+        <ion-card-subtitle
+          >Score de la suggestion :{{
+            round(association.productMatches.score)
+          }}
+          / 10</ion-card-subtitle
+        >
+        <div *ngFor="let wine of association.pairedWines">
+          <ion-item href="#">
+            <ion-icon name="wine" slot="start"></ion-icon>
+            <ion-label>{{ wine }}</ion-label>
+          </ion-item>
+        </div>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>Idées d'associations: </ion-label>
+          {{ association.pairingText }}
+        </ion-item>
+        <ion-item>
+          <ion-label>Suggestion: </ion-label>
+          {{ association.productMatches.title }}
+        </ion-item>
+        <ion-item>
+          <ion-label>Prix: </ion-label>
+          {{ association.productMatches.price }}
+        </ion-item>
+
+        <ion-item
+          href="{{ association.productMatches.link }}"
+          target="_blank"
+          color="primary"
+          class="ion-text-center"
+          lines="none"
+        >
+          <ion-label> Détails </ion-label>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

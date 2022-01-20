@@ -1,21 +1,29 @@
 <app-mobile-menu></app-mobile-menu>
 
 <ion-content class="wine-container">
-  <app-accordion></app-accordion>
+  <app-accordion
+    (recommandationData)="setRecommandation($event)"
+    (descriptionData)="setDescription($event)"
+    (associationData)="setAssociation($event)"
+  ></app-accordion>
 
   <div
     [ngClass]=" getScreenWidth >= 767 ? 'carrousel-container' :'mobile-carrousel-container' "
-    *ngIf="carouselDatas"
+    *ngIf="isRecommandationDisplay"
   >
-    <app-carrousel
-      (formReseted)="showHideRecommandation($event)"
-    ></app-carrousel>
+    <app-carrousel [recommandation]="currentRecommandation"></app-carrousel>
   </div>
-
+  <div *ngIf="isDescriptionDisplay" class="description-container">
+    <app-wines-description
+      [description]="currentDescription"
+    ></app-wines-description>
+  </div>
   <div
-    class="carrousel-container ion-padding ion-text-center"
-    *ngIf="descriptionDatas"
+    [ngClass]=" getScreenWidth >= 767 ? 'carrousel-container' :'mobile-carrousel-container' "
+    *ngIf="isAssociationDisplay"
   >
-    <p>Description: <span>{{ descriptionDatas.wineDescription }}</span></p>
+    <app-wines-association
+      [association]="currentAssociation"
+    ></app-wines-association>
   </div>
 </ion-content>

@@ -1,6 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { Observable } from 'rxjs';
-import { WineService } from 'src/services/wine.service';
+import { ProductMatch } from 'src/app/models/models';
 
 @Component({
   selector: 'app-wines',
@@ -8,23 +7,18 @@ import { WineService } from 'src/services/wine.service';
   styleUrls: ['./wines.page.scss'],
 })
 export class WinesPage {
-  winesCategories: any = [];
   public getScreenWidth: number;
   public getScreenHeight: number;
-  isRecommandationListItemOpened: boolean = false;
-  carouselDatas: any = [];
-  descriptionDatas: { wineDescription: string | null };
 
-  accordionItemClicked: boolean;
-  astring$: Observable<string>;
-  constructor(private wineService: WineService) {
-    this.wineService.getOption().subscribe((data) => {
-      this.carouselDatas = data;
-    });
-    this.wineService.getWineDescription().subscribe((data) => {
-      this.descriptionDatas = data;
-    });
-  }
+  currentRecommandation: ProductMatch[] = [];
+  currentDescription: { wineDescription: string } | {} = {};
+  currentAssociation: [] = [];
+
+  isRecommandationDisplay: boolean = false;
+  isDescriptionDisplay: boolean = false;
+  isAssociationDisplay: boolean = false;
+
+  constructor() {}
 
   ngAfterContentInit() {
     this.getScreenWidth = window.innerWidth;
@@ -37,13 +31,24 @@ export class WinesPage {
     this.getScreenHeight = window.innerHeight;
   }
 
-  showHideRecommandation(value: any) {
-    this.accordionItemClicked = value;
+  setRecommandation(value: ProductMatch[]) {
+    this.currentRecommandation = value;
+    this.isRecommandationDisplay = true;
+    this.isDescriptionDisplay = false;
+    this.isAssociationDisplay = false;
   }
-  showHideDescription(value: any) {
-    this.accordionItemClicked = value;
+  setDescription(value: any) {
+    this.currentDescription = value;
+    console.log(this.currentDescription);
+    this.isDescriptionDisplay = true;
+    this.isRecommandationDisplay = false;
+    this.isAssociationDisplay = false;
   }
-  showHideAssociation(value: any) {
-    this.accordionItemClicked = value;
+
+  setAssociation(value: any) {
+    this.currentAssociation = value;
+    this.isAssociationDisplay = true;
+    this.isRecommandationDisplay = false;
+    this.isDescriptionDisplay = false;
   }
 }
