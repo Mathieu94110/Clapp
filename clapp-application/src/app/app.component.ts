@@ -10,10 +10,8 @@ import { IEquipmentItems } from 'src/app/models/models';
 export class AppComponent {
   equipmentList: IEquipmentItems[];
   constructor(private http: HttpClient) {
-    this.http
-      .get('../../../assets/data/menu-items.json')
-      .subscribe((data: any[]) => {
-        this.equipmentList = data;
-      });
+    this.http.get('assets/data/menu-items.json').subscribe((data: any[]) => {
+      this.equipmentList = data;
+    });
   }
 }
