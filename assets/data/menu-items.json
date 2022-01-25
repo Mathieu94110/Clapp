@@ -1,0 +1,14 @@
+[
+  {
+    "path": "/recipes",
+    "title": "recettes"
+  },
+  {
+    "path": "/my-recipes",
+    "title": "mes recettes"
+  },
+  {
+    "path": "/wines",
+    "title": "vins"
+  }
+]
