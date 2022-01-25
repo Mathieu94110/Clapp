@@ -10,12 +10,12 @@ import { IMenuItems } from 'src/app/models/models';
 export class MobileMenuComponent {
   menuItems: IMenuItems[];
   isListItemOpened: boolean = false;
-  burgerImg: string = '../../assets/icon/burger-button-icon.png';
-  markImg: string = '../../assets/icon/mark-icon.png';
+  burgerImg: string = 'assets/icon/burger-button-icon.png';
+  markImg: string = 'assets/icon/mark-icon.png';
 
   constructor(private http: HttpClient) {
     this.http
-      .get('../../../assets/data/menu-items.json')
+      .get('assets/data/menu-items.json')
       .subscribe((data: any[]) => {
         this.menuItems = data;
       });
