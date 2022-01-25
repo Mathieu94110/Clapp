@@ -7,12 +7,12 @@ import { IonicModule } from '@ionic/angular';
 import { WinesPageRoutingModule } from './wines-routing.module';
 
 import { WinesPage } from './wines.page';
-import { MobileMenuComponent } from 'src/app/components/mobile-menu/mobile-menu.component';
 import { AccordionComponent } from '../../components/accordion/accordion.component';
 import { CarrouselComponent } from '../../components/carrousel/carrousel.component';
 import { SwiperModule } from 'swiper/angular';
 import { WinesDescriptionComponent } from 'src/app/components/wines-description/wines-description.component';
 import { WinesAssociationComponent } from 'src/app/components/wines-association/wines-association.component';
+import { MobileMenuModule } from 'src/app/components/mobile-menu/mobile-menu.module';
 
 @NgModule({
   imports: [
@@ -22,10 +22,10 @@ import { WinesAssociationComponent } from 'src/app/components/wines-association/
     WinesPageRoutingModule,
     SwiperModule,
     ReactiveFormsModule,
+    MobileMenuModule,
   ],
   declarations: [
     WinesPage,
-    MobileMenuComponent,
     AccordionComponent,
     CarrouselComponent,
     WinesDescriptionComponent,

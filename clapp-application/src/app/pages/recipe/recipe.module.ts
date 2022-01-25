@@ -5,7 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { RecipePageRoutingModule } from './recipe-routing.module';
 import { RecipePage } from './recipe.page';
 import { FilterPipe } from '../../../pipes/filter.pipe';
-import { MobileMenuComponent } from 'src/app/components/mobile-menu/mobile-menu.component';
+import { MobileMenuModule } from 'src/app/components/mobile-menu/mobile-menu.module';
 
 @NgModule({
   imports: [
@@ -13,8 +13,9 @@ import { MobileMenuComponent } from 'src/app/components/mobile-menu/mobile-menu.
     FormsModule,
     IonicModule,
     RecipePageRoutingModule,
+    MobileMenuModule,
   ],
-  declarations: [RecipePage, MobileMenuComponent, FilterPipe],
+  declarations: [RecipePage, FilterPipe],
   exports: [RecipePage],
 })
 export class RecipePageModule {}

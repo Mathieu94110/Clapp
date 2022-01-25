@@ -6,7 +6,7 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./wines-association.component.scss'],
 })
 export class WinesAssociationComponent implements OnInit {
-  @Input() association: string;
+  @Input() association: any;
   constructor() {}
 
   ngOnInit() {}

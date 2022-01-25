@@ -7,11 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { MyRecipesPageRoutingModule } from './my-recipes-routing.module';
 
 import { MyRecipesPage } from './my-recipes.page';
-import { MobileMenuComponent } from 'src/app/components/mobile-menu/mobile-menu.component';
+import { MobileMenuModule } from 'src/app/components/mobile-menu/mobile-menu.module';
 
 @NgModule({
-  imports: [CommonModule, FormsModule, IonicModule, MyRecipesPageRoutingModule],
-  declarations: [MyRecipesPage, MobileMenuComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    MyRecipesPageRoutingModule,
+    MobileMenuModule,
+  ],
+  declarations: [MyRecipesPage],
   exports: [MyRecipesPage],
 })
 export class MyRecipesPageModule {}

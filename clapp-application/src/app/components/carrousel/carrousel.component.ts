@@ -23,7 +23,7 @@ SwiperCore.use([Pagination, Virtual]);
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CarrouselComponent implements OnInit {
-  @Input() recommandation: string;
+  @Input() recommandation: any;
 
   wineForm: FormGroup;
   isSubmitted = false;

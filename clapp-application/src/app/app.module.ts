@@ -16,11 +16,11 @@ import { SwiperModule } from 'swiper/angular';
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     SwiperModule,
     HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

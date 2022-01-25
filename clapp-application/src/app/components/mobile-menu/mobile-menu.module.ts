@@ -6,9 +6,9 @@ import { MobileMenuComponent } from './mobile-menu.component';
 import { MobileMenuRoutingModule } from './mobile-routing.module';
 
 @NgModule({
-  entryComponents: [],
-  imports: [IonicModule, CommonModule, FormsModule, MobileMenuRoutingModule],
   declarations: [MobileMenuComponent],
+  imports: [IonicModule, CommonModule, FormsModule, MobileMenuRoutingModule],
+
   exports: [MobileMenuComponent],
 })
 export class MobileMenuModule {}
