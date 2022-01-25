@@ -14,11 +14,9 @@ export class MobileMenuComponent {
   markImg: string = 'assets/icon/mark-icon.png';
 
   constructor(private http: HttpClient) {
-    this.http
-      .get('assets/data/menu-items.json')
-      .subscribe((data: any[]) => {
-        this.menuItems = data;
-      });
+    this.http.get('assets/data/menu-items.json').subscribe((data: any[]) => {
+      this.menuItems = data;
+    });
   }
 
   toggleAccordion(): void {
