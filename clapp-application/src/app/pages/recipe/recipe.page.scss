@@ -8,6 +8,7 @@ ion-content {
       ion-title{
     font-size: 36px;
     line-height: 30px;
+    margin-bottom: 6px;
 }
 ion-text{
     font-size: 14px;
@@ -47,6 +48,15 @@ ion-text{
     ion-header{
         background-color: var(--ion-color-primary);
     }
+    ion-card{
+           
+          height: auto;
+          width: 90%;
+          margin: 20px auto;
+          text-align: center;
+          background-color: #fff;
+        
+    }
     ion-content {
       ion-toolbar{
          margin: 51px 28px 101px 29px;
@@ -60,6 +70,7 @@ ion-text{
 
     font-size: 14px;
 }
+
 ion-searchbar.sc-ion-searchbar-md-h.sc-ion-searchbar-md-s.md.searchbar-left-aligned.hydrated{
       height: 67px !important;
     width: 319px!important;
@@ -118,7 +129,7 @@ ion-text{
 
 ion-grid.default-mobile-items{
   padding: 0 23px;
-  margin: 0 28px 10px 28px;
+  margin: 0 28px 1px 28px;
     height: 109px;
     width: 319px;
     background-color: #fff;

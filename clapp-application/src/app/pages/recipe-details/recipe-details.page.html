@@ -1,9 +1,14 @@
 <app-mobile-menu></app-mobile-menu>
 <div style="width: 100%; height: 100%">
   <ion-button (click)="goBack()" class="ion-padding"> Retour </ion-button>
-  <ion-content class="test" *ngIf="recipesDetails">
+  <ion-content *ngIf="recipesDetails">
     <ion-card class="details-card">
-      <img [src]="recipesDetails.image" fullscreen class="ion-padding" />
+      <img
+        [src]="recipesDetails.image"
+        fullscreen
+        class="ion-padding"
+        class="recipe-details-img"
+      />
       <ion-card-header>
         <ion-card-title><h2>{{ recipesDetails.title }}</h2></ion-card-title>
         <ion-card-subtitle>

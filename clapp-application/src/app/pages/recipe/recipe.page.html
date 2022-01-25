@@ -16,6 +16,7 @@
   <ion-searchbar
     placeholder="Rechercher"
     (ionChange)="search($event)"
+    clearIcon="none"
   ></ion-searchbar>
 
   <ng-container *ngIf="getScreenWidth >= 767;else mobileScreen">
@@ -57,6 +58,83 @@
     </ion-grid>
   </ng-container>
   <ng-template #mobileScreen>
-    <div style="width: 500px; height: 600px">{{recipes |json}}</div>
+    <div *ngFor="let recipe of recipes">
+      <!-- <ion-grid class="desktop-screen-items">
+        <ion-row class="list-label-keys-margin ion-padding ion-margin">
+          <ion-col class="list-label ion-text-uppercase ion-text-center">
+            Titre
+          </ion-col>
+        </ion-row>
+        <ion-row class="list-label-keys-margin ion-padding ion-margin">
+          <ion-col class="list-label ion-text-center">
+            <ion-text>{{ recipe.title }}</ion-text>
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="list-label-keys-margin ion-padding ion-margin">
+          <ion-col class="list-label ion-text-uppercase ion-text-center"
+            >Id</ion-col
+          >
+        </ion-row>
+        <ion-row class="list-label-keys-margin ion-padding ion-margin">
+          <ion-col class="list-label ion-text-center">
+            <ion-text>{{ recipe.id }}</ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-item class="ion-padding" lines="none">
+          <ion-row
+            style="
+              width: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            "
+          >
+            <ion-col size="3" class="ion-text-center"
+              ><img [src]="recipe.image" width="160px" height="160px"
+            /></ion-col>
+            <ion-col size="3" class="ion-text-center">
+              <ion-button (click)="goToRecipeDetailsPage(recipe.id)"
+                >Voir la recette</ion-button
+              >
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-grid> -->
+
+      <ion-card>
+        <img [src]="recipe.image" />
+        <ion-card-header>
+          <ion-card-title>
+            <ion-text color="primary">
+              <h4>Titre</h4>
+            </ion-text>
+            {{ recipe.title }}</ion-card-title
+          >
+          <ion-card-subtitle>
+            <ion-text color="primary">
+              <h4>Identifiant</h4>
+            </ion-text>
+            {{ recipe.id }}</ion-card-subtitle
+          >
+        </ion-card-header>
+        <!-- <ion-button
+          fill="outline"
+          slot="end"
+          (click)="goToRecipeDetailsPage(recipe.id)"
+          >Recette</ion-button
+        > -->
+        <!-- <button ion-fab     >
+      <ion-icon name="information-circle"></ion-icon>
+    </button> -->
+        <ion-button
+          expand="full"
+          color="primary"
+          class="ion-no-margin"
+          (click)="goToRecipeDetailsPage(recipe.id)"
+          >Voir la recette</ion-button
+        >
+      </ion-card>
+    </div>
   </ng-template>
 </ion-content>

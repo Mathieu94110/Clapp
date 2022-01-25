@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
 import { WinesPageRoutingModule } from './wines-routing.module';
-
 import { WinesPage } from './wines.page';
 import { AccordionComponent } from '../../components/accordion/accordion.component';
 import { CarrouselComponent } from '../../components/carrousel/carrousel.component';
